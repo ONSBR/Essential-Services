@@ -19,7 +19,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
-import br.org.ons.EssentialServices.repository.EssentialRepository;
+import br.org.ons.EssentialServices.repository.ApplicationProviderRepository;
+import br.org.ons.EssentialServices.model.ApplicationProvider;
+import br.org.ons.EssentialServices.model.iEntity;
 
 @Path("/application-providers")
 public class EssentialServiceIntegration {
@@ -39,20 +41,32 @@ public class EssentialServiceIntegration {
     public Response getApplicationProviders(@Context ServletContext context) throws JSONException, Exception {
         String essentialProjectPath =  context.getInitParameter("essential_project_path");
         JSONArray jsonArray = new JSONArray();
-        EssentialRepository essential = new EssentialRepository(essentialProjectPath);
-        
-        ArrayList<String> slotList = new ArrayList();
-        slotList.add("name");
-        slotList.add("description");
-        slotList.add("ap_supplier");
-        slotList.add("uses_information_representation");
 
-        Collection<HashMap<String,Object>> instances = essential.getObjInstances("Application_Provider", slotList);
-        Iterator<HashMap<String,Object>> instancesI = instances.iterator();
+        ApplicationProviderRepository repository = new ApplicationProviderRepository(essentialProjectPath, null);
+
+        Collection<iEntity> applicationProviders = repository.getSimpleApplicationProviders();
+
+        Iterator<HashMap<String,Object>> instancesI = iEntity.serializeCollection(applicationProviders).iterator();
+
         while (instancesI.hasNext()) {
-            HashMap<String,Object> map = instancesI.next();
-            jsonArray.put(map);
+            jsonArray.put(instancesI.next());
         }
         return Response.status(200).entity(jsonArray.toString()).build();
+
+        // EssentialRepository essential = new EssentialRepository(essentialProjectPath);
+        
+        // ArrayList<String> slotList = new ArrayList();
+        // slotList.add("name");
+        // slotList.add("description");
+        // slotList.add("ap_supplier");
+        // slotList.add("uses_information_representation");
+
+        // Collection<HashMap<String,Object>> instances = essential.getObjInstances("Application_Provider", slotList);
+        // Iterator<HashMap<String,Object>> instancesI = instances.iterator();
+        // while (instancesI.hasNext()) {
+        //     HashMap<String,Object> map = instancesI.next();
+        //     jsonArray.put(map);
+        // }
+        // return Response.status(200).entity(jsonArray.toString()).build();
     }
 }
