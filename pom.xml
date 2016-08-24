@@ -104,6 +104,29 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+            <plugin>
+                <groupId>com.fizzed</groupId>
+                <artifactId>fizzed-watcher-maven-plugin</artifactId>
+                <version>1.0.6</version>
+                <configuration>
+                    <touchFile>target/classes/watcher.txt</touchFile>
+                    <watches>
+                        <watch>
+                            <directory>src/main/java</directory>
+                        </watch>
+                        <watch>
+                            <directory>src/main/webapp</directory>
+                        </watch>
+                    </watches>
+                    <goals>
+                        <goal>clean</goal>
+                        <goal>install</goal>
+                    </goals>
+                    <profiles>
+                        <profile>env-local</profile>
+                    </profiles>
+                </configuration> 
+            </plugin>
 		</plugins>
   </build>
   <profiles>

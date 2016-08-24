@@ -44,11 +44,13 @@ public class EssentialServiceIntegration {
         ArrayList<String> slotList = new ArrayList();
         slotList.add("name");
         slotList.add("description");
+        slotList.add("ap_supplier");
+        slotList.add("uses_information_representation");
 
-        Collection<HashMap<String,String>> instances = essential.getInstances(slotList);
-        Iterator<HashMap<String,String>> instancesI = instances.iterator();
+        Collection<HashMap<String,Object>> instances = essential.getObjInstances("Application_Provider", slotList);
+        Iterator<HashMap<String,Object>> instancesI = instances.iterator();
         while (instancesI.hasNext()) {
-            HashMap<String,String> map = instancesI.next();
+            HashMap<String,Object> map = instancesI.next();
             jsonArray.put(map);
         }
         return Response.status(200).entity(jsonArray.toString()).build();
