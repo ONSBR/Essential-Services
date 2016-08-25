@@ -1,31 +1,27 @@
 package br.org.ons.EssentialServices.rest;
 
-import java.lang.Exception;
-
 import java.util.Collection;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.HashMap;
+import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-import javax.servlet.ServletContext;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.json.JSONArray;
+import org.json.JSONException;
 
-import br.org.ons.EssentialServices.repository.ApplicationProviderRepository;
-import br.org.ons.EssentialServices.model.ApplicationProvider;
 import br.org.ons.EssentialServices.model.iEntity;
+import br.org.ons.EssentialServices.repository.ApplicationProviderRepository;
+
+import org.apache.log4j.Logger;
 
 @Path("/application-providers")
 public class EssentialServiceIntegration {
-    
+    static final Logger LOGGER = Logger.getLogger(EssentialServiceIntegration.class); 
     // @GET
     // @Produces("text/html")
     // public Response getStartingPage(@Context ServletContext context) {
@@ -39,6 +35,7 @@ public class EssentialServiceIntegration {
     @GET
     @Produces("application/json")
     public Response getApplicationProviders(@Context ServletContext context) throws JSONException, Exception {
+    		LOGGER.debug("API chamada");
         String essentialProjectPath =  context.getInitParameter("essential_project_path");
         JSONArray jsonArray = new JSONArray();
 
@@ -46,7 +43,7 @@ public class EssentialServiceIntegration {
 
         Collection<iEntity> applicationProviders = repository.getSimpleApplicationProviders();
 
-        Iterator<HashMap<String,Object>> instancesI = iEntity.serializeCollection(applicationProviders).iterator();
+        Iterator<Map<String,Object>> instancesI = iEntity.serializeCollection(applicationProviders).iterator();
 
         while (instancesI.hasNext()) {
             jsonArray.put(instancesI.next());

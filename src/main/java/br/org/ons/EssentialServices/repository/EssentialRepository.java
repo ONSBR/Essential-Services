@@ -1,22 +1,32 @@
 package br.org.ons.EssentialServices.repository;
 
-import java.io.*;
-import java.lang.Exception;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Map;
 import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
-import edu.stanford.smi.protege.model.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
+import com.google.common.base.CaseFormat;
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
+
+import edu.stanford.smi.protege.model.Cls;
+import edu.stanford.smi.protege.model.Instance;
+import edu.stanford.smi.protege.model.KnowledgeBase;
+import edu.stanford.smi.protege.model.Project;
+import edu.stanford.smi.protege.model.Slot;
 
 /*
  *  * This application just prints out all of the classes in a knowledge base
  *   * and the direct instances of those classes.
  *    */
 public class EssentialRepository {
+	static final Logger LOGGER = Logger.getLogger(EssentialRepository.class); 
     private String projectPath = "";
     private Project project;
     private KnowledgeBase kb;
@@ -56,8 +66,12 @@ public class EssentialRepository {
         Iterator<String> slotListI = slotList.iterator();
         while (slotListI.hasNext()) {
             String key = slotListI.next();
-            Slot sl = kb.getSlot(key);
-            slots.add(sl);
+            String keyConv = convertFormat(key, 1);
+            LOGGER.debug("key: " + keyConv);
+            Slot sl = kb.getSlot(keyConv);
+            if (sl != null){
+            		slots.add(sl);
+            }
         }
         Cls cls = kb.getCls(className); 
         Iterator instancesI = cls.getDirectInstances().iterator();
@@ -135,14 +149,39 @@ public class EssentialRepository {
         // return hashMap;
         return getInstanceHashMap(instance,slots);
     }
+    
+    private static final BiMap<String,String> exceptions;
+    static {
+    		exceptions = HashBiMap.create();
+    		exceptions.put("apITOwner","ap_IT_owner");
+    		exceptions.put("apITContact","ap_IT_contact");
+    }
+    
+    private String convertFormat(String str,  int direction) {
+    		if (direction == -1) {
+    			if (exceptions.containsValue(str)){
+    				return exceptions.inverse().get(str);
+    			}
+    			return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, str);
+    		}
+    		else if (direction == 1) {
+    			if (exceptions.containsKey(str)) {
+    				return exceptions.get(str);
+    			}
+    			return CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, str);
+    		}
+    		
+    		return str;
+    }
 
     private HashMap<String,Object> getInstanceHashMap(Instance instance, Collection<Slot> slots) {
         HashMap<String,Object> hashMap = new HashMap<String, Object>();
-        hashMap.put("Id",instance.getName());
+        hashMap.put("id",instance.getName());
         Iterator<Slot> slotsI = slots.iterator();
         while (slotsI.hasNext()) {
             Slot slot = slotsI.next();
-            String slotName = slot.getName();
+            String slotNameUnderScore = slot.getName();
+            String slotName = convertFormat(slotNameUnderScore,-1);
             String slotType = slot.getValueType().toString().toLowerCase();
             Object valueToAdd;
             if (slot.getAllowsMultipleValues()) { //That's a collection

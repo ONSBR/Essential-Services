@@ -27,7 +27,8 @@ public class ApplicationProviderRepository {
         Iterator<HashMap<String,Object>> instancesI = instances.iterator();
         while (instancesI.hasNext()) {
             HashMap<String,Object> map = instancesI.next();
-            ApplicationProvider applicationProvider = new ApplicationProvider(map);
+            ApplicationProvider applicationProvider = new ApplicationProvider();
+            applicationProvider.updateProperties(map);
             applicationProviders.add(applicationProvider);
         }
         return applicationProviders;
