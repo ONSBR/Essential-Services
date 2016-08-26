@@ -23,10 +23,10 @@ public class SoftwareComponent extends Entity implements iEntity {
 	 */
 	public SoftwareComponent() {
 		super();
-		simpleTags.put("Nome","name");
-		simpleTags.put("Id","id");
-		simpleTags.put("ArchLayer","softwareArchitectureLayer");
-		simpleTags.put("Protocolo"," softwareInteractionTechProtocol");
+//		simpleTags.put("Nome","name");
+//		simpleTags.put("Id","id");
+//		simpleTags.put("ArchLayer","softwareArchitectureLayer");
+//		simpleTags.put("Protocolo"," softwareInteractionTechProtocol");
 	}
 
 	/**

@@ -26,6 +26,14 @@ import edu.stanford.smi.protege.model.Slot;
  *   * and the direct instances of those classes.
  *    */
 public class EssentialRepository {
+	
+	private static final BiMap<String,String> exceptions;
+    static {
+    		exceptions = HashBiMap.create();
+    		exceptions.put("apITOwner","ap_IT_owner");
+    		exceptions.put("apITContact","ap_IT_contact");
+    }
+	
 	static final Logger LOGGER = Logger.getLogger(EssentialRepository.class); 
     private String projectPath = "";
     private Project project;
@@ -123,38 +131,8 @@ public class EssentialRepository {
     }
 
     private HashMap<String,Object> getInstanceHashMap(Instance instance) {
-        // HashMap<String,Object> hashMap = new HashMap<String, Object>();
-        // hashMap.put("Id",instance.getName());
         Collection<Slot> slots = instance.getOwnSlots();
-        // while (slotsI.hasNext()) {
-        //     Slot slot = slotsI.next();
-        //     String slotName = slot.getName();
-        //     String slotType = slot.getValueType().toString().toLowerCase();
-        //     Object valueToAdd;
-        //     if (slot.getAllowsMultipleValues()) { //That's a collection
-        //         Collection list = new ArrayList();
-        //         Iterator valuesI = instance.getDirectOwnSlotValues(slot).iterator();
-        //         while (valuesI.hasNext()) {
-        //             Object value = valuesI.next();
-        //             list.add(getInstanceSlotValue(slotType,value));
-        //         }
-        //         valueToAdd = list;
-        //     }
-        //     else {
-        //         Object value = instance.getDirectOwnSlotValue(slot);
-        //         valueToAdd = getInstanceSlotValue(slotType,value);
-        //     }
-        //     hashMap.put(slotName,valueToAdd);
-        // }
-        // return hashMap;
         return getInstanceHashMap(instance,slots);
-    }
-    
-    private static final BiMap<String,String> exceptions;
-    static {
-    		exceptions = HashBiMap.create();
-    		exceptions.put("apITOwner","ap_IT_owner");
-    		exceptions.put("apITContact","ap_IT_contact");
     }
     
     private String convertFormat(String str,  int direction) {

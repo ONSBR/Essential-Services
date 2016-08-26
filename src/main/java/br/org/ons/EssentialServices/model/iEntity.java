@@ -10,7 +10,7 @@ import java.util.Map;
 
 public interface iEntity {
 	
-	HashMap<String,String> listSimpleTags(); 
+//	HashMap<String,String> listSimpleTags(); 
 	
     Map<String,Object> toHashMap() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException;
     void updateProperties(HashMap<String,Object> properties) throws IllegalAccessException, InvocationTargetException;

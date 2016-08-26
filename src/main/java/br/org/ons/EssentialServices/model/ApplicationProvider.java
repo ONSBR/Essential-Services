@@ -16,67 +16,36 @@ import java.util.Set;
 public class ApplicationProvider extends Entity implements iEntity {
 
     private String id;
-    private String name;
-    private String description;
-    private String apDeliveryModel;
-    private String lifecycleStatusApplicationProvider;
-    private String typeOfApplication;
-    private String apCodebaseStatus;
-    private String apSupplier;
-    private Collection apSiteAccess;
-    private Collection applicationProviderPurpose;
-    private Collection requiredTechnologyCapabilities;
-    private Collection elementClassifiedBy;
-    private String apBusinessOwner;
-    private String apITOwner;
-    private String apITContact;
-    private ArrayList<SoftwareComponent> softwareComponents;
-    private ArrayList<FunctionImplementation> functionImplementations;
+    private String Nome;
+    private String Descricao;
+    private String Hospedagem;
+    private String Status;
+    private String TipoDeAplicacao;
+    private String TipoDeProduto;
+    private String Fornecedor;
+    private Collection<String> UsageLocations;
+    private Collection<String> Propositos;
+    private Collection<String> TechCapsNeed;
+    private Collection <String>Classifications;
+    private String Owner;
+    private String ITOwner;
+    private String ITContact;
+    private ArrayList<SoftwareComponent> SoftwareComponents;
+    private ArrayList<FunctionImplementation> FunctionImpls;
 
 
     public ApplicationProvider() {
     		super();
-    		simpleTags.put("Nome","name");
-    		simpleTags.put("Descricao","description");
-    		simpleTags.put("Hospedagem","apDeliveryModel");
-    		simpleTags.put("Id","id");
-    		simpleTags.put("Status","lifecycleStatusApplicationProvider");
-    		simpleTags.put("TipoDeAplicacao","typeOfApplication");
-    		simpleTags.put("TipoDeProduto","apCodebaseStatus");
-    		simpleTags.put("Fornecedor","apSupplier");
-    		simpleTags.put("UsageLocations","apSiteAccess");
-    		simpleTags.put("Propositos","applicationProviderPurpose");
-    		simpleTags.put("TechCapsNeed","requiredTechnologyCapabilities");
-    		simpleTags.put("Classifications","elementClassifiedBy");
-    		simpleTags.put("Owner","apBusinessOwner");
-    		simpleTags.put("ITOwner","apITOwner");
-    		simpleTags.put("ITContact","apITContact");
-    		complexTags.put("SoftwareComponents","softwareComponents");
-    		complexTags.put("FunctionImpls","functionImplementations");
-    } 
-
-    public void setName(String name) {
-        this.name = name;
     }
 
-    public String getName() {
-        return this.name;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    /**
+	/**
 	 * @return the id
 	 */
 	public String getId() {
 		return id;
 	}
+
 
 	/**
 	 * @param id the id to set
@@ -85,199 +54,259 @@ public class ApplicationProvider extends Entity implements iEntity {
 		this.id = id;
 	}
 
-	/**
-	 * @return the apDeliveryModel
-	 */
-	public String getApDeliveryModel() {
-		return apDeliveryModel;
-	}
 
 	/**
-	 * @param apDeliveryModel the apDeliveryModel to set
+	 * @return the nome
 	 */
-	public void setApDeliveryModel(String apDeliveryModel) {
-		this.apDeliveryModel = apDeliveryModel;
+	public String getNome() {
+		return Nome;
 	}
 
-	/**
-	 * @return the lifecycleStatusApplicationProvider
-	 */
-	public String getLifecycleStatusApplicationProvider() {
-		return lifecycleStatusApplicationProvider;
-	}
 
 	/**
-	 * @param lifecycleStatusApplicationProvider the lifecycleStatusApplicationProvider to set
+	 * @param nome the nome to set
 	 */
-	public void setLifecycleStatusApplicationProvider(String lifecycleStatusApplicationProvider) {
-		this.lifecycleStatusApplicationProvider = lifecycleStatusApplicationProvider;
+	public void setNome(String nome) {
+		Nome = nome;
 	}
 
-	/**
-	 * @return the typeOfApplication
-	 */
-	public String getTypeOfApplication() {
-		return typeOfApplication;
-	}
 
 	/**
-	 * @param typeOfApplication the typeOfApplication to set
+	 * @return the descricao
 	 */
-	public void setTypeOfApplication(String typeOfApplication) {
-		this.typeOfApplication = typeOfApplication;
+	public String getDescricao() {
+		return Descricao;
 	}
 
-	/**
-	 * @return the apCodebaseStatus
-	 */
-	public String getApCodebaseStatus() {
-		return apCodebaseStatus;
-	}
 
 	/**
-	 * @param apCodebaseStatus the apCodebaseStatus to set
+	 * @param descricao the descricao to set
 	 */
-	public void setApCodebaseStatus(String apCodebaseStatus) {
-		this.apCodebaseStatus = apCodebaseStatus;
+	public void setDescricao(String descricao) {
+		Descricao = descricao;
 	}
 
-	/**
-	 * @return the apSupplier
-	 */
-	public String getApSupplier() {
-		return apSupplier;
-	}
 
 	/**
-	 * @param apSupplier the apSupplier to set
+	 * @return the hospedagem
 	 */
-	public void setApSupplier(String apSupplier) {
-		this.apSupplier = apSupplier;
+	public String getHospedagem() {
+		return Hospedagem;
 	}
 
-	/**
-	 * @return the apSiteAccess
-	 */
-	public Collection getApSiteAccess() {
-		return apSiteAccess;
-	}
 
 	/**
-	 * @param apSiteAccess the apSiteAccess to set
+	 * @param hospedagem the hospedagem to set
 	 */
-	public void setApSiteAccess(Collection apSiteAccess) {
-		this.apSiteAccess = apSiteAccess;
+	public void setHospedagem(String hospedagem) {
+		Hospedagem = hospedagem;
 	}
 
-	/**
-	 * @return the applicationProviderPurpose
-	 */
-	public Collection getApplicationProviderPurpose() {
-		return applicationProviderPurpose;
-	}
 
 	/**
-	 * @param applicationProviderPurpose the applicationProviderPurpose to set
+	 * @return the status
 	 */
-	public void setApplicationProviderPurpose(Collection applicationProviderPurpose) {
-		this.applicationProviderPurpose = applicationProviderPurpose;
+	public String getStatus() {
+		return Status;
 	}
 
-	/**
-	 * @return the requiredTechnologyCapabilities
-	 */
-	public Collection getRequiredTechnologyCapabilities() {
-		return requiredTechnologyCapabilities;
-	}
 
 	/**
-	 * @param requiredTechnologyCapabilities the requiredTechnologyCapabilities to set
+	 * @param status the status to set
 	 */
-	public void setRequiredTechnologyCapabilities(Collection requiredTechnologyCapabilities) {
-		this.requiredTechnologyCapabilities = requiredTechnologyCapabilities;
+	public void setStatus(String status) {
+		Status = status;
 	}
 
-	/**
-	 * @return the elementClassifiedBy
-	 */
-	public Collection getElementClassifiedBy() {
-		return elementClassifiedBy;
-	}
 
 	/**
-	 * @param elementClassifiedBy the elementClassifiedBy to set
+	 * @return the tipoDeAplicacao
 	 */
-	public void setElementClassifiedBy(Collection elementClassifiedBy) {
-		this.elementClassifiedBy = elementClassifiedBy;
+	public String getTipoDeAplicacao() {
+		return TipoDeAplicacao;
 	}
 
-	/**
-	 * @return the apBusinessOwner
-	 */
-	public String getApBusinessOwner() {
-		return apBusinessOwner;
-	}
 
 	/**
-	 * @param apBusinessOwner the apBusinessOwner to set
+	 * @param tipoDeAplicacao the tipoDeAplicacao to set
 	 */
-	public void setApBusinessOwner(String apBusinessOwner) {
-		this.apBusinessOwner = apBusinessOwner;
+	public void setTipoDeAplicacao(String tipoDeAplicacao) {
+		TipoDeAplicacao = tipoDeAplicacao;
 	}
 
-	/**
-	 * @return the apITOwner
-	 */
-	public String getApITOwner() {
-		return apITOwner;
-	}
 
 	/**
-	 * @param apITOwner the apITOwner to set
+	 * @return the tipoDeProduto
 	 */
-	public void setApITOwner(String apITOwner) {
-		this.apITOwner = apITOwner;
+	public String getTipoDeProduto() {
+		return TipoDeProduto;
 	}
 
-	/**
-	 * @return the apITContact
-	 */
-	public String getApITContact() {
-		return apITContact;
-	}
 
 	/**
-	 * @param apITContact the apITContact to set
+	 * @param tipoDeProduto the tipoDeProduto to set
 	 */
-	public void setApITContact(String apITContact) {
-		this.apITContact = apITContact;
+	public void setTipoDeProduto(String tipoDeProduto) {
+		TipoDeProduto = tipoDeProduto;
 	}
+
+
+	/**
+	 * @return the fornecedor
+	 */
+	public String getFornecedor() {
+		return Fornecedor;
+	}
+
+
+	/**
+	 * @param fornecedor the fornecedor to set
+	 */
+	public void setFornecedor(String fornecedor) {
+		Fornecedor = fornecedor;
+	}
+
+
+	/**
+	 * @return the usageLocations
+	 */
+	public Collection<String> getUsageLocations() {
+		return UsageLocations;
+	}
+
+
+	/**
+	 * @param usageLocations the usageLocations to set
+	 */
+	public void setUsageLocations(Collection<String> usageLocations) {
+		UsageLocations = usageLocations;
+	}
+
+
+	/**
+	 * @return the propositos
+	 */
+	public Collection<String> getPropositos() {
+		return Propositos;
+	}
+
+
+	/**
+	 * @param propositos the propositos to set
+	 */
+	public void setPropositos(Collection<String> propositos) {
+		Propositos = propositos;
+	}
+
+
+	/**
+	 * @return the techCapsNeed
+	 */
+	public Collection<String> getTechCapsNeed() {
+		return TechCapsNeed;
+	}
+
+
+	/**
+	 * @param techCapsNeed the techCapsNeed to set
+	 */
+	public void setTechCapsNeed(Collection<String> techCapsNeed) {
+		TechCapsNeed = techCapsNeed;
+	}
+
+
+	/**
+	 * @return the classifications
+	 */
+	public Collection<String> getClassifications() {
+		return Classifications;
+	}
+
+
+	/**
+	 * @param classifications the classifications to set
+	 */
+	public void setClassifications(Collection<String> classifications) {
+		Classifications = classifications;
+	}
+
+
+	/**
+	 * @return the owner
+	 */
+	public String getOwner() {
+		return Owner;
+	}
+
+
+	/**
+	 * @param owner the owner to set
+	 */
+	public void setOwner(String owner) {
+		Owner = owner;
+	}
+
+
+	/**
+	 * @return the iTOwner
+	 */
+	public String getITOwner() {
+		return ITOwner;
+	}
+
+
+	/**
+	 * @param iTOwner the iTOwner to set
+	 */
+	public void setITOwner(String iTOwner) {
+		ITOwner = iTOwner;
+	}
+
+
+	/**
+	 * @return the iTContact
+	 */
+	public String getITContact() {
+		return ITContact;
+	}
+
+
+	/**
+	 * @param iTContact the iTContact to set
+	 */
+	public void setITContact(String iTContact) {
+		ITContact = iTContact;
+	}
+
 
 	/**
 	 * @return the softwareComponents
 	 */
 	public ArrayList<SoftwareComponent> getSoftwareComponents() {
-		return softwareComponents;
+		return SoftwareComponents;
 	}
+
 
 	/**
 	 * @param softwareComponents the softwareComponents to set
 	 */
 	public void setSoftwareComponents(ArrayList<SoftwareComponent> softwareComponents) {
-		this.softwareComponents = softwareComponents;
+		SoftwareComponents = softwareComponents;
 	}
 
-	/**
-	 * @return the functionImplementations
-	 */
-	public ArrayList<FunctionImplementation> getFunctionImplementations() {
-		return functionImplementations;
-	}
 
 	/**
-	 * @param functionImplementations the functionImplementations to set
+	 * @return the functionImpls
 	 */
-	public void setFunctionImplementations(ArrayList<FunctionImplementation> functionImplementations) {
-		this.functionImplementations = functionImplementations;
+	public ArrayList<FunctionImplementation> getFunctionImpls() {
+		return FunctionImpls;
 	}
+
+
+	/**
+	 * @param functionImpls the functionImpls to set
+	 */
+	public void setFunctionImpls(ArrayList<FunctionImplementation> functionImpls) {
+		FunctionImpls = functionImpls;
+	} 
 }

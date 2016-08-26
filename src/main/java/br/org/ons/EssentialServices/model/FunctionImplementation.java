@@ -12,12 +12,12 @@ public class FunctionImplementation extends Entity implements iEntity {
 
 	public FunctionImplementation() {
 		super();
-		simpleTags.put("Nome","name");
-		simpleTags.put("Descricao","description");
-		simpleTags.put("Id","id");
-		simpleTags.put("SoftwareComponent","inverseOfDeliversAppFuncImpl");
-		simpleTags.put("Protocolo","appFuncImplProtocol");
-		simpleTags.put("InformationUsed","usesInformationRepresentation");
+//		simpleTags.put("Nome","name");
+//		simpleTags.put("Descricao","description");
+//		simpleTags.put("Id","id");
+//		simpleTags.put("SoftwareComponent","inverseOfDeliversAppFuncImpl");
+//		simpleTags.put("Protocolo","appFuncImplProtocol");
+//		simpleTags.put("InformationUsed","usesInformationRepresentation");
 	}
 
 	/**
