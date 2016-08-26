@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.HashMap;
 
 import br.org.ons.EssentialServices.model.ApplicationProvider;
+import br.org.ons.EssentialServices.model.Entity;
 import br.org.ons.EssentialServices.model.iEntity;
 
 public class ApplicationProviderRepository {
@@ -19,9 +20,9 @@ public class ApplicationProviderRepository {
 
     public Collection<iEntity> getSimpleApplicationProviders() throws Exception{
         Collection<iEntity> applicationProviders = new ArrayList<iEntity>();
-        EssentialRepository essential = new EssentialRepository(this.essentialProjectPath);
+        EssentialRepository essential = new EssentialRepository(essentialProjectPath); 
         
-        ArrayList<String> slotList = ApplicationProvider.getSimpleTags();
+        ArrayList<String> slotList = Entity.getSimpleTags(new ApplicationProvider());
         
         Collection<HashMap<String,Object>> instances = essential.getObjInstances("Application_Provider", slotList);
         Iterator<HashMap<String,Object>> instancesI = instances.iterator();

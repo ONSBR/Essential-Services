@@ -13,27 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class ApplicationProvider implements iEntity {
-    private static final HashMap<String,String> simpleTags ;
-    
-    static {
-    		simpleTags = new HashMap<String,String>();
-    		simpleTags.put("Nome","name");
-    		simpleTags.put("Descricao","description");
-    		simpleTags.put("Hospedagem","apDeliveryModel");
-    		simpleTags.put("Id","id");
-    		simpleTags.put("Status","lifecycleStatusApplicationProvider");
-    		simpleTags.put("TipoDeAplicacao","typeOfApplication");
-    		simpleTags.put("TipoDeProduto","apCodebaseStatus");
-    		simpleTags.put("Fornecedor","apSupplier");
-    		simpleTags.put("UsageLocations","apSiteAccess");
-    		simpleTags.put("Propositos","applicationProviderPurpose");
-    		simpleTags.put("TechCapsNeed","requiredTechnologyCapabilities");
-    		simpleTags.put("Classifications","elementClassifiedBy");
-    		simpleTags.put("Owner","apBusinessOwner");
-    		simpleTags.put("ITOwner","apITOwner");
-    		simpleTags.put("ITContact","apITContact");
-    }
+public class ApplicationProvider extends Entity implements iEntity {
 
     private String id;
     private String name;
@@ -50,10 +30,29 @@ public class ApplicationProvider implements iEntity {
     private String apBusinessOwner;
     private String apITOwner;
     private String apITContact;
+    private ArrayList<SoftwareComponent> softwareComponents;
+    private ArrayList<FunctionImplementation> functionImplementations;
 
 
     public ApplicationProvider() {
-
+    		super();
+    		simpleTags.put("Nome","name");
+    		simpleTags.put("Descricao","description");
+    		simpleTags.put("Hospedagem","apDeliveryModel");
+    		simpleTags.put("Id","id");
+    		simpleTags.put("Status","lifecycleStatusApplicationProvider");
+    		simpleTags.put("TipoDeAplicacao","typeOfApplication");
+    		simpleTags.put("TipoDeProduto","apCodebaseStatus");
+    		simpleTags.put("Fornecedor","apSupplier");
+    		simpleTags.put("UsageLocations","apSiteAccess");
+    		simpleTags.put("Propositos","applicationProviderPurpose");
+    		simpleTags.put("TechCapsNeed","requiredTechnologyCapabilities");
+    		simpleTags.put("Classifications","elementClassifiedBy");
+    		simpleTags.put("Owner","apBusinessOwner");
+    		simpleTags.put("ITOwner","apITOwner");
+    		simpleTags.put("ITContact","apITContact");
+    		complexTags.put("SoftwareComponents","softwareComponents");
+    		complexTags.put("FunctionImpls","functionImplementations");
     } 
 
     public void setName(String name) {
@@ -254,27 +253,31 @@ public class ApplicationProvider implements iEntity {
 		this.apITContact = apITContact;
 	}
 
-	public static ArrayList<String> getSimpleTags() {
-		Collection<String> values = simpleTags.values();
-		ArrayList<String> simpleTagsList = new ArrayList<String>(values);
-        return simpleTagsList;
-    }
+	/**
+	 * @return the softwareComponents
+	 */
+	public ArrayList<SoftwareComponent> getSoftwareComponents() {
+		return softwareComponents;
+	}
 
-    public Map<String,Object> toHashMap() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-        Map<String,Object> map = PropertyUtils.describe(this);
-        Map<String,Object> hashMap = new HashMap<String,Object>();
-        
-        Iterator<Map.Entry<String,String>> translations = simpleTags.entrySet().iterator();
-        
-        while (translations.hasNext()) {
-        		Map.Entry<String, String> kV = translations.next();
-        		hashMap.put(kV.getKey(), map.get(kV.getValue()));
-        }
-        
-        return hashMap;
-    }
-    
-    public void updateProperties(HashMap<String,Object> properties) throws IllegalAccessException, InvocationTargetException {
-    		BeanUtils.populate(this, properties);
-    }
+	/**
+	 * @param softwareComponents the softwareComponents to set
+	 */
+	public void setSoftwareComponents(ArrayList<SoftwareComponent> softwareComponents) {
+		this.softwareComponents = softwareComponents;
+	}
+
+	/**
+	 * @return the functionImplementations
+	 */
+	public ArrayList<FunctionImplementation> getFunctionImplementations() {
+		return functionImplementations;
+	}
+
+	/**
+	 * @param functionImplementations the functionImplementations to set
+	 */
+	public void setFunctionImplementations(ArrayList<FunctionImplementation> functionImplementations) {
+		this.functionImplementations = functionImplementations;
+	}
 }

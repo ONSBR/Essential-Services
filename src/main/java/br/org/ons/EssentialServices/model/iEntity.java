@@ -7,8 +7,14 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
+
 public interface iEntity {
+	
+	HashMap<String,String> listSimpleTags(); 
+	
     Map<String,Object> toHashMap() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException;
+    void updateProperties(HashMap<String,Object> properties) throws IllegalAccessException, InvocationTargetException;
+    
     static Collection<Map<String,Object>> serializeCollection(Collection<iEntity> list) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         Collection<Map<String,Object>> hashMaps = new ArrayList<Map<String,Object>>();
 
