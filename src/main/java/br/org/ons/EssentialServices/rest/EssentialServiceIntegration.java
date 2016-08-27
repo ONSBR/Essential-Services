@@ -13,6 +13,10 @@ import javax.ws.rs.core.Response;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+//import com.sun.jersey.server.impl.application.WebApplicationContext;
 
 import br.org.ons.EssentialServices.model.iEntity;
 import br.org.ons.EssentialServices.repository.ApplicationProviderRepository;
@@ -34,12 +38,15 @@ public class EssentialServiceIntegration {
 
     @GET
     @Produces("application/json")
-    public Response getApplicationProviders(@Context ServletContext context) throws JSONException, Exception {
+    public Response getApplicationProviders(@Context ServletContext ctx) throws JSONException, Exception {
     		LOGGER.debug("API chamada");
-        String essentialProjectPath =  context.getInitParameter("essential_project_path");
+        String essentialProjectPath =  ctx.getInitParameter("essential_project_path");
         JSONArray jsonArray = new JSONArray();
 
-        ApplicationProviderRepository repository = new ApplicationProviderRepository(essentialProjectPath, null);
+//        ApplicationProviderRepository repository = new ApplicationProviderRepository();
+        WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(ctx);
+        ApplicationProviderRepository repository = (ApplicationProviderRepository) context.getBean("ApplicationProviderRepository");
+        repository.setEssentialProjectPath(essentialProjectPath);
 
         Collection<iEntity> applicationProviders = repository.getSimpleApplicationProviders();
 

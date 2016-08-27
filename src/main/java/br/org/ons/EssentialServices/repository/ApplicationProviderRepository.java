@@ -2,30 +2,23 @@ package br.org.ons.EssentialServices.repository;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import org.apache.log4j.Logger;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
-
-import java.util.HashMap;
-
 import br.org.ons.EssentialServices.model.ApplicationProvider;
-import br.org.ons.EssentialServices.model.Entity;
 import br.org.ons.EssentialServices.model.iEntity;
-import br.org.ons.EssentialServices.rest.EssentialServiceIntegration;
+import br.org.ons.EssentialServices.repository.server.EssentialRepository;
 
 public class ApplicationProviderRepository extends EntityRepository {
 	static final Logger LOGGER = Logger.getLogger(ApplicationProviderRepository.class); 
     
     
-
-    public ApplicationProviderRepository(String projectPath, String repository) {
-        essentialProjectPath = projectPath;
-       repositoryName = repository;
-
-		ownTags.put("id","id");
+	
+	
+    public ApplicationProviderRepository() {
+       ownTags.put("id","id");
 		ownTags.put("nome","name");
 		ownTags.put("descricao","description");
 		ownTags.put("hospedagem","apDeliveryModel");
@@ -42,22 +35,22 @@ public class ApplicationProviderRepository extends EntityRepository {
 		ownTags.put("ITContact","apITContact");
 		
 		inversedOwnTags = ownTags.inverse();
-    } 
+    }
 
     public Collection<iEntity> getSimpleApplicationProviders() throws Exception{
         Collection<iEntity> applicationProviders = new ArrayList<iEntity>();
-        EssentialRepository essential = new EssentialRepository(essentialProjectPath); 
+//        EssentialRepository essential = new EssentialRepository(essentialProjectPath); 
         
         ArrayList<String> slotList = getSimpleTags();
         
-        Collection<HashMap<String,Object>> instances = essential.getObjInstances("Application_Provider", slotList);
+        Collection<HashMap<String,Object>> instances = arquiteturaRepository.getObjInstances("Application_Provider", slotList);
+//        Collection<HashMap<String,Object>> instances = essential.getObjInstances("Application_Provider", slotList);
         Iterator<HashMap<String,Object>> instancesI = instances.iterator();
         while (instancesI.hasNext()) {
             HashMap<String,Object> map = instancesI.next();
             HashMap<String,Object> translatedMap = translateProperties(map);
             ApplicationProvider applicationProvider = new ApplicationProvider();
             applicationProvider.updateProperties(translatedMap);
-            LOGGER.debug(applicationProvider.getNome());
             applicationProviders.add(applicationProvider);
         }
         return applicationProviders;

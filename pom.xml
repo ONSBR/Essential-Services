@@ -1,17 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>br.org.ons.EssentialServices</groupId>
-  <artifactId>Essential-Services</artifactId>
-  <packaging>war</packaging>
-  <version>1.0</version>
-  <name>Essential-Services Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.org.ons.EssentialServices</groupId>
+	<artifactId>Essential-Services</artifactId>
+	<packaging>war</packaging>
+	<version>1.0</version>
+	<name>Essential-Services Maven Webapp</name>
+	<url>http://maven.apache.org</url>
 
-  <properties>
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
- 
+
 	<repositories>
 		<repository>
 			<id>maven2-repository.java.net</id>
@@ -21,95 +22,142 @@
 		</repository>
 	</repositories>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId> 
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>Protege</groupId>
-      <artifactId>protege</artifactId>
-      <version>3.5</version>
-      <!--<scope>system</scope>
-      <systemPath>/Applications/Protege_3.5/protege.jar</systemPath>-->
-    </dependency>
-    <dependency>
-      <groupId>Protege</groupId>
-      <artifactId>driver</artifactId>
-      <version>1</version>
-      <!--<scope>system</scope>
-      <systemPath>/Applications/Protege_3.5/driver.jar</systemPath>-->
-    </dependency>
-    <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>3.1.0</version>
-    </dependency>
-    <dependency>
-        <groupId>asm</groupId>
-        <artifactId>asm</artifactId>
-        <version>3.3.1</version>
-    </dependency>
-    <dependency>
-        <groupId>com.sun.jersey</groupId>
-        <artifactId>jersey-bundle</artifactId>
-        <version>1.19</version>
-    </dependency>
-    <dependency>
-        <groupId>org.json</groupId>
-        <artifactId>json</artifactId>
-        <version>20140107</version>
-    </dependency>
-    <dependency>
-        <groupId>com.sun.jersey</groupId>
-        <artifactId>jersey-server</artifactId>
-        <version>1.19</version>
-    </dependency>
-    <dependency>
-        <groupId>com.sun.jersey</groupId>
-        <artifactId>jersey-core</artifactId>
-        <version>1.19</version>
-    </dependency>
-    <dependency>
-    	<groupId>commons-beanutils</groupId>
-    	<artifactId>commons-beanutils</artifactId>
-    	<version>1.9.2</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/log4j/log4j -->
-<dependency>
-    <groupId>log4j</groupId>
-    <artifactId>log4j</artifactId>
-    <version>1.2.17</version>
-</dependency>
-<dependency>
-  <groupId>com.google.guava</groupId>
-  <artifactId>guava</artifactId>
-  <version>19.0</version>
-</dependency>
-  </dependencies>
-  
-  <build>
-    <finalName>Essential-Services</finalName>
-    <sourceDirectory>src/main/java</sourceDirectory>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>Protege</groupId>
+			<artifactId>protege</artifactId>
+			<version>3.5</version>
+			<!--<scope>system</scope> <systemPath>/Applications/Protege_3.5/protege.jar</systemPath> -->
+		</dependency>
+		<dependency>
+			<groupId>Protege</groupId>
+			<artifactId>driver</artifactId>
+			<version>1</version>
+			<!--<scope>system</scope> <systemPath>/Applications/Protege_3.5/driver.jar</systemPath> -->
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm</artifactId>
+			<version>3.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-bundle</artifactId>
+			<version>1.19</version>
+		</dependency>
+		<!-- Spring 3 dependencies -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>3.0.5.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>3.0.5.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>3.0.5.RELEASE</version>
+		</dependency>
+
+		<!-- Jersey + Spring -->
+		<dependency>
+			<groupId>com.sun.jersey.contribs</groupId>
+			<artifactId>jersey-spring</artifactId>
+			<version>1.8</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId> 
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20140107</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>1.19</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-core</artifactId>
+			<version>1.19</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>19.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>Essential-Services</finalName>
+		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.4</version>
 				<configuration>
-                    <webResources>
-                        <resource>
-                            <filtering>true</filtering>
-                            <directory>src/main/webapp</directory>
-                            <includes>
-                                <include>**/web.xml</include>
-                            </includes>
-                        </resource>
-                    </webResources>
+					<webResources>
+						<resource>
+							<filtering>true</filtering>
+							<directory>src/main/webapp</directory>
+							<includes>
+								<include>WEB-INF/web.xml</include>
+								<include>WEB-INF/applicationContext.xml</include>
+							</includes>
+						</resource>
+					</webResources>
 					<warSourceDirectory>src/main/webapp</warSourceDirectory>
 					<failOnMissingWebXml>true</failOnMissingWebXml>
-                    <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -120,116 +168,96 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-            <plugin>
-                <groupId>com.fizzed</groupId>
-                <artifactId>fizzed-watcher-maven-plugin</artifactId>
-                <version>1.0.6</version>
-                <configuration>
-                    <touchFile>target/classes/watcher.txt</touchFile>
-                    <watches>
-                        <watch>
-                            <directory>src/main/java</directory>
-                        </watch>
-                        <watch>
-                            <directory>src/main/webapp</directory>
-                        </watch>
-                    </watches>
-                    <goals>
-                        <goal>clean</goal>
-                        <goal>install</goal>
-                    </goals>
-                    <profiles>
-                        <profile>env-local</profile>
-                    </profiles>
-                </configuration> 
-            </plugin>
+			<plugin>
+				<groupId>com.fizzed</groupId>
+				<artifactId>fizzed-watcher-maven-plugin</artifactId>
+				<version>1.0.6</version>
+				<configuration>
+					<touchFile>target/classes/watcher.txt</touchFile>
+					<watches>
+						<watch>
+							<directory>src/main/java</directory>
+						</watch>
+						<watch>
+							<directory>src/main/webapp</directory>
+						</watch>
+					</watches>
+					<goals>
+						<goal>clean</goal>
+						<goal>install</goal>
+					</goals>
+					<profiles>
+						<profile>env-local</profile>
+					</profiles>
+				</configuration>
+			</plugin>
 		</plugins>
-  </build>
-  <profiles>
-    <profile>
-      <id>env-local</id>
-      <properties>
-        <essential.project.path>/Users/coichedid/Projetos/Essential/EssentialServices/EssentialONS_BD/ONS.pprj</essential.project.path>
-      </properties>
-      <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.tomcat.maven</groupId>
-                    <artifactId>tomcat7-maven-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>deploy-to-integrationtest</id>
-                            <goals>
-                                <goal>redeploy</goal>
-                            </goals>
-                            <phase>install</phase>
-                            <configuration>
-                                <server>TomcatLocal</server>
-                                <url>http://localhost:8080/manager/text</url>
-                                <path>/EssentialServices</path>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <!-- <plugin>
-			        <artifactId>maven-resources-plugin</artifactId>
-			        <version>3.0.1</version>
-			        <executions>
-			          <execution>
-			            <id>copy-resources</id>
-			            here the phase you need
-			            <phase>install</phase>
-			            <goals>
-			              <goal>copy-resources</goal>
-			            </goals>
-			            <configuration>
-			              <outputDirectory>/Library/Tomcat/webapps/</outputDirectory>
-			              <overwrite>true</overwrite>
-			              <resources>          
-			                <resource>
-			                  <directory>src/non-packaged-resources</directory>
-			                  <includes>
-			                  	<include>Essential-Services.war</include>
-			                  </includes>
-			                  <filtering>true</filtering>
-			                </resource>
-			              </resources>              
-			            </configuration>            
-			          </execution>
-			        </executions>
-			      </plugin> -->
-            </plugins>
-        </build>
-    </profile>
-    <profile>
-      <id>env-DesGit221</id>
-      <properties>
-        <essential.project.path>/var/local/Essential/ONSProject/ONS.pprj</essential.project.path>
-      </properties>
-      <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.tomcat.maven</groupId>
-                    <artifactId>tomcat7-maven-plugin</artifactId>
- 
-                    <!-- Deploy to integration test server on Maven deploy -->
-                    <executions>
-                        <execution>
-                            <id>deploy-to-integrationtest</id>
-                            <goals>
-                                <goal>redeploy</goal>
-                            </goals>
-                            <phase>install</phase>
-                            <configuration>
-                                <server>TomcatDesGit221</server>
-                                <url>http://des-git-221.ons.org.br/manager/text</url>
-                                <path>/EssentialServices</path>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-  </profiles>
+	</build>
+	<profiles>
+		<profile>
+			<id>env-local</id>
+			<properties>
+				<essential.project.path>/Users/coichedid/Projetos/Essential/EssentialServices/EssentialONS_BD/ONS.pprj</essential.project.path>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.tomcat.maven</groupId>
+						<artifactId>tomcat7-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>deploy-to-integrationtest</id>
+								<goals>
+									<goal>redeploy</goal>
+								</goals>
+								<phase>install</phase>
+								<configuration>
+									<server>TomcatLocal</server>
+									<url>http://localhost:8080/manager/text</url>
+									<path>/EssentialServices</path>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- <plugin> <artifactId>maven-resources-plugin</artifactId> <version>3.0.1</version> 
+						<executions> <execution> <id>copy-resources</id> here the phase you need 
+						<phase>install</phase> <goals> <goal>copy-resources</goal> </goals> <configuration> 
+						<outputDirectory>/Library/Tomcat/webapps/</outputDirectory> <overwrite>true</overwrite> 
+						<resources> <resource> <directory>src/non-packaged-resources</directory> 
+						<includes> <include>Essential-Services.war</include> </includes> <filtering>true</filtering> 
+						</resource> </resources> </configuration> </execution> </executions> </plugin> -->
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>env-DesGit221</id>
+			<properties>
+				<essential.project.path>/var/local/Essential/ONSProject/ONS.pprj</essential.project.path>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.tomcat.maven</groupId>
+						<artifactId>tomcat7-maven-plugin</artifactId>
+
+						<!-- Deploy to integration test server on Maven deploy -->
+						<executions>
+							<execution>
+								<id>deploy-to-integrationtest</id>
+								<goals>
+									<goal>redeploy</goal>
+								</goals>
+								<phase>install</phase>
+								<configuration>
+									<server>TomcatDesGit221</server>
+									<url>http://des-git-221.ons.org.br/manager/text</url>
+									<path>/EssentialServices</path>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

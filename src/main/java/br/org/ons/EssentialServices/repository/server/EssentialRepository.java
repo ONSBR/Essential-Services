@@ -1,4 +1,4 @@
-package br.org.ons.EssentialServices.repository;
+package br.org.ons.EssentialServices.repository.server;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class EssentialRepository {
     }
 	
 	static final Logger LOGGER = Logger.getLogger(EssentialRepository.class); 
-    private String projectPath = "";
+    private String projectPath;
     private Project project;
     private KnowledgeBase kb;
     private String externalRepositoryName;
@@ -56,7 +56,7 @@ public class EssentialRepository {
     }
 
     public EssentialRepository(String projectPath) throws Exception{
-        this.projectPath = projectPath;
+    	this.projectPath = projectPath;
         Collection errors = new ArrayList();
         this.project = new Project(this.projectPath, errors);
         if (errors.size() == 0) {
@@ -75,7 +75,6 @@ public class EssentialRepository {
         while (slotListI.hasNext()) {
             String key = slotListI.next();
             String keyConv = convertFormat(key, 1);
-            LOGGER.debug("key: " + keyConv);
             Slot sl = kb.getSlot(keyConv);
             if (sl != null){
             		slots.add(sl);
@@ -344,6 +343,13 @@ public class EssentialRepository {
         }
         return builder.toString();
     }
+
+	/**
+	 * @param projectPath the projectPath to set
+	 */
+	public void setProjectPath(String projectPath) {
+		this.projectPath = projectPath;
+	}
 
 
 }
