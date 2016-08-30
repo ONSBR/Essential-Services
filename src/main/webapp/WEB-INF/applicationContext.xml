@@ -12,7 +12,26 @@
 		<property name="essentialProjectPath" value="${essential.project.path}"></property>
 	</bean>
 	
-	<bean id="ApplicationProviderRepository" class="br.org.ons.EssentialServices.repository.ApplicationProviderRepository" parent="EntityRepository"/>
+	<bean id="ApplicationProviderRepository" class="br.org.ons.EssentialServices.repository.ApplicationProviderRepository" parent="EntityRepository">
+		<property name="stakeholderRepository" ref="StakeholderRepository"></property>
+		<property name="functionImplementationRepository" ref="FunctionImplementationRepository"></property>
+	</bean>
+	
+	<bean id="StakeholderRepository" class="br.org.ons.EssentialServices.repository.StakeholderRepository" parent="EntityRepository">
+		<property name="actorRepository" ref="ActorRepository"></property>
+	</bean>
+	
+	<bean id="ActorRepository" class="br.org.ons.EssentialServices.repository.ActorRepository" parent="EntityRepository"/>
+	
+	<bean id="FunctionImplementationRepository" class="br.org.ons.EssentialServices.repository.FunctionImplementationRepository" parent="EntityRepository">
+		<property name="functionRepository" ref="FunctionRepository"></property>
+	</bean>
+	
+	<bean id="FunctionRepository" class="br.org.ons.EssentialServices.repository.FunctionRepository" parent="EntityRepository">
+		<property name="applicationCapabilityRepository" ref="ApplicationCapabilityRepository"></property>
+	</bean>
+	
+	<bean id="ApplicationCapabilityRepository" class="br.org.ons.EssentialServices.repository.ApplicationCapabilityRepository" parent="EntityRepository"/>
 	
 	<bean id="ArquiteturaCorporativaONSRepository" class="br.org.ons.EssentialServices.repository.server.ArquiteturaCorporativaONSRepositoryImpl" init-method="init">
 		<property name="projectPath" value="${essential.project.path}"></property>

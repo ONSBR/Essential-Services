@@ -3,6 +3,7 @@
  */
 package br.org.ons.EssentialServices.repository;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,14 +11,16 @@ import java.util.Iterator;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import com.mysql.jdbc.NotImplemented;
 
+import br.org.ons.EssentialServices.model.iEntity;
 import br.org.ons.EssentialServices.repository.server.ArquiteturaCorporativaONSRepository;
 
 /**
  * @author coichedid
  *
  */
-public class EntityRepository {
+public class EntityRepository implements iEntityRepository {
 	
 	
 	protected ArquiteturaCorporativaONSRepository arquiteturaRepository;
@@ -26,6 +29,7 @@ public class EntityRepository {
     protected BiMap<String,String> inversedOwnTags;
     protected String repositoryName;
     protected String essentialProjectPath;
+    
 	/**
 	 * 
 	 */

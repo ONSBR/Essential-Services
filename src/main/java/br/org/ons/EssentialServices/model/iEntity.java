@@ -15,10 +15,10 @@ public interface iEntity {
     Map<String,Object> toHashMap() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException;
     void updateProperties(HashMap<String,Object> properties) throws IllegalAccessException, InvocationTargetException;
     
-    static Collection<Map<String,Object>> serializeCollection(Collection<iEntity> list) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+    static Collection<Map<String,Object>> serializeCollection(Collection<? extends iEntity> list) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         Collection<Map<String,Object>> hashMaps = new ArrayList<Map<String,Object>>();
 
-        Iterator<iEntity> iterator = list.iterator();
+        Iterator<iEntity> iterator = (Iterator<iEntity>) list.iterator();
 
         while(iterator.hasNext()) {
             hashMaps.add(iterator.next().toHashMap());

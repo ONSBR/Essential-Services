@@ -5,8 +5,6 @@ package br.org.ons.EssentialServices.util;
 
 import org.apache.log4j.Logger;
 
-import br.org.ons.EssentialServices.repository.server.EssentialRepository;
-
 /**
  * @author coichedid
  *

@@ -4,20 +4,15 @@ import java.util.Collection;
 
 public class FunctionImplementation extends Entity implements iEntity {
 	private String id;
-    private String name;
-    private String description;
-    private String inverseOfDeliversAppFuncImpl;
-    private String appFuncImplProtocol;
-    private Collection<String> usesInformationRepresentation;
+    private String nome;
+    private String descricao;
+    private String softwareComponent;
+    private String protocolo;
+    private Collection<String> informationUsed;
+    private Function function;
 
 	public FunctionImplementation() {
 		super();
-//		simpleTags.put("Nome","name");
-//		simpleTags.put("Descricao","description");
-//		simpleTags.put("Id","id");
-//		simpleTags.put("SoftwareComponent","inverseOfDeliversAppFuncImpl");
-//		simpleTags.put("Protocolo","appFuncImplProtocol");
-//		simpleTags.put("InformationUsed","usesInformationRepresentation");
 	}
 
 	/**
@@ -35,73 +30,87 @@ public class FunctionImplementation extends Entity implements iEntity {
 	}
 
 	/**
-	 * @return the name
+	 * @return the nome
 	 */
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param nome the nome to set
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	/**
-	 * @return the description
+	 * @return the descricao
 	 */
-	public String getDescription() {
-		return description;
+	public String getDescricao() {
+		return descricao;
 	}
 
 	/**
-	 * @param description the description to set
+	 * @param descricao the descricao to set
 	 */
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	/**
-	 * @return the inverseOfDeliversAppFuncImpl
+	 * @return the softwareComponent
 	 */
-	public String getInverseOfDeliversAppFuncImpl() {
-		return inverseOfDeliversAppFuncImpl;
+	public String getSoftwareComponent() {
+		return softwareComponent;
 	}
 
 	/**
-	 * @param inverseOfDeliversAppFuncImpl the inverseOfDeliversAppFuncImpl to set
+	 * @param softwareComponent the softwareComponent to set
 	 */
-	public void setInverseOfDeliversAppFuncImpl(String inverseOfDeliversAppFuncImpl) {
-		this.inverseOfDeliversAppFuncImpl = inverseOfDeliversAppFuncImpl;
+	public void setSoftwareComponent(String softwareComponent) {
+		this.softwareComponent = softwareComponent;
 	}
 
 	/**
-	 * @return the appFuncImplProtocol
+	 * @return the protocolo
 	 */
-	public String getAppFuncImplProtocol() {
-		return appFuncImplProtocol;
+	public String getProtocolo() {
+		return protocolo;
 	}
 
 	/**
-	 * @param appFuncImplProtocol the appFuncImplProtocol to set
+	 * @param protocolo the protocolo to set
 	 */
-	public void setAppFuncImplProtocol(String appFuncImplProtocol) {
-		this.appFuncImplProtocol = appFuncImplProtocol;
+	public void setProtocolo(String protocolo) {
+		this.protocolo = protocolo;
 	}
 
 	/**
-	 * @return the usesInformationRepresentation
+	 * @return the informationUsed
 	 */
-	public Collection<String> getUsesInformationRepresentation() {
-		return usesInformationRepresentation;
+	public Collection<String> getInformationUsed() {
+		return informationUsed;
 	}
 
 	/**
-	 * @param usesInformationRepresentation the usesInformationRepresentation to set
+	 * @param informationUsed the informationUsed to set
 	 */
-	public void setUsesInformationRepresentation(Collection<String> usesInformationRepresentation) {
-		this.usesInformationRepresentation = usesInformationRepresentation;
+	public void setInformationUsed(Collection<String> informationUsed) {
+		this.informationUsed = informationUsed;
+	}
+
+	/**
+	 * @return the function
+	 */
+	public Function getFunction() {
+		return function;
+	}
+
+	/**
+	 * @param function the function to set
+	 */
+	public void setFunction(Function function) {
+		this.function = function;
 	}
 
 }

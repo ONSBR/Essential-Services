@@ -1,16 +1,7 @@
 package br.org.ons.EssentialServices.model;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-
-import  org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.PropertyUtils;
-import java.util.Map;
-import java.util.Set;
 
 
 public class ApplicationProvider extends Entity implements iEntity {
@@ -32,6 +23,7 @@ public class ApplicationProvider extends Entity implements iEntity {
     private String ITContact;
     private ArrayList<SoftwareComponent> SoftwareComponents;
     private ArrayList<FunctionImplementation> FunctionImpls;
+    private ArrayList<Stakeholder> Stakeholders;
 
 
     public ApplicationProvider() {
@@ -308,5 +300,21 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 */
 	public void setFunctionImpls(ArrayList<FunctionImplementation> functionImpls) {
 		FunctionImpls = functionImpls;
+	}
+
+
+	/**
+	 * @return the stakeholders
+	 */
+	public ArrayList<Stakeholder> getStakeholders() {
+		return Stakeholders;
+	}
+
+
+	/**
+	 * @param stakeholders the stakeholders to set
+	 */
+	public void setStakeholders(ArrayList<Stakeholder> stakeholders) {
+		Stakeholders = stakeholders;
 	} 
 }

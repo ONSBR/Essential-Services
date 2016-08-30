@@ -11,17 +11,17 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-//import com.sun.jersey.server.impl.application.WebApplicationContext;
+import br.org.ons.EssentialServices.model.ApplicationProvider;
 
 import br.org.ons.EssentialServices.model.iEntity;
-import br.org.ons.EssentialServices.repository.ApplicationProviderRepository;
-
-import org.apache.log4j.Logger;
+import br.org.ons.EssentialServices.repository.iEntityRepository;
+import br.org.ons.EssentialServices.repository.iRepository;
 
 @Path("/application-providers")
 public class EssentialServiceIntegration {
@@ -45,17 +45,17 @@ public class EssentialServiceIntegration {
 
 //        ApplicationProviderRepository repository = new ApplicationProviderRepository();
         WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(ctx);
-        ApplicationProviderRepository repository = (ApplicationProviderRepository) context.getBean("ApplicationProviderRepository");
-        repository.setEssentialProjectPath(essentialProjectPath);
+        iRepository repository = (iRepository) context.getBean("ApplicationProviderRepository");
+        ((iEntityRepository)repository).setEssentialProjectPath(essentialProjectPath);
 
-        Collection<iEntity> applicationProviders = repository.getSimpleApplicationProviders();
+        Collection<ApplicationProvider> applicationProviders = (Collection<ApplicationProvider>) repository.getSimpleEntities();
 
         Iterator<Map<String,Object>> instancesI = iEntity.serializeCollection(applicationProviders).iterator();
 
         while (instancesI.hasNext()) {
             jsonArray.put(instancesI.next());
         }
-        return Response.status(200).entity(jsonArray.toString()).build();
+        return Response.status(200).entity(jsonArray.toString()).build(); 
 
         // EssentialRepository essential = new EssentialRepository(essentialProjectPath);
         
