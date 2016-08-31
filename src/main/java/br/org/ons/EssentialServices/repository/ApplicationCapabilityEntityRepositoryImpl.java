@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
+
 import br.org.ons.EssentialServices.model.ApplicationCapability;
 import br.org.ons.EssentialServices.model.Function;
 import br.org.ons.EssentialServices.model.iEntity;
@@ -17,26 +19,19 @@ import br.org.ons.EssentialServices.model.iEntity;
  * @author coichedid
  *
  */
-public class ApplicationCapabilityRepository extends EntityRepository implements iRepository {
+public class ApplicationCapabilityEntityRepositoryImpl extends EntityRepositoryImpl implements iEntityRepository {
 
 	/**
 	 * 
 	 */
-	public ApplicationCapabilityRepository() {
+	public ApplicationCapabilityEntityRepositoryImpl() {
+		super();
 		ownTags.put("nome","name");
 		ownTags.put("descricao","description");
 		
 		inversedOwnTags = ownTags.inverse();
-	}
-
-	/* (non-Javadoc)
-	 * @see br.org.ons.EssentialServices.repository.iRepository#getSimpleEntities()
-	 */
-	@Override
-	public Collection<? extends iEntity> getSimpleEntities() throws Exception {
-		Collection<Object> intancesObj = arquiteturaRepository.getObjInstances("Application_Capability");
-		ArrayList<? extends iEntity> entities = getEntities(intancesObj);
-		return entities;
+		
+		LOGGER = Logger.getLogger(this.getClass()); 
 	}
 
 	/* (non-Javadoc)
@@ -83,13 +78,9 @@ public class ApplicationCapabilityRepository extends EntityRepository implements
         return applicationCapabilities;
 	}
 
-	/* (non-Javadoc)
-	 * @see br.org.ons.EssentialServices.repository.iRepository#getEntity(java.util.Collection, int)
-	 */
 	@Override
-	public iEntity getEntity(Collection<Object> entityObjects, int idx) throws IllegalAccessException, InvocationTargetException {
-		ArrayList<? extends iEntity> entities = getEntities(entityObjects);
-		return entities.size() >= idx+1?entities.get(idx):null;
+	public ArrayList<? extends iEntity> getDistinctEntities(Collection<Object> entityObjects) throws IllegalAccessException, InvocationTargetException {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
 	}
-
 }

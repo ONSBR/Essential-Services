@@ -10,6 +10,7 @@ public interface ArquiteturaCorporativaONSRepository {
 
 	Collection<HashMap<String, Object>> getObjInstanceMaps(String className, ArrayList<String> slotList);
 	Collection<HashMap<String, Object>> getObjInstanceMaps(Collection<Object> instanceObjects, ArrayList<String> slotList);
+	HashMap<String,HashMap<String, Object>> getDistinctObjInstanceMaps(Collection<Object> instanceObjects, ArrayList<String> slotList);
 
 	void setExternalRepositoryName(String repositoryName);
 
@@ -22,5 +23,5 @@ public interface ArquiteturaCorporativaONSRepository {
 	void setProjectPath(String projectPath);
 
 	Collection<Object> getObjInstancesOfSlot(String string, HashMap<String, Object> map);
-
+	Collection<Object> getObjInstancesOfSlot(String string, Collection<Object> instances);
 }

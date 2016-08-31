@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
+
 import br.org.ons.EssentialServices.model.Actor;
 import br.org.ons.EssentialServices.model.ApplicationProvider;
 import br.org.ons.EssentialServices.model.Function;
@@ -20,14 +22,16 @@ import br.org.ons.EssentialServices.model.iEntity;
  * @author coichedid
  *
  */
-public class FunctionImplementationRepository extends EntityRepository implements iRepository {
+public class FunctionImplementationEntityRepositoryImpl extends EntityRepositoryImpl implements iEntityRepository {
 	
-	private FunctionRepository functionRepository;
+	private iEntityRepository functionRepository;
 
 	/**
 	 * 
 	 */
-	public FunctionImplementationRepository() {
+	public FunctionImplementationEntityRepositoryImpl() {
+		super();
+		
 		ownTags.put("id","id");
 		ownTags.put("nome","name");
 		ownTags.put("descricao","description");
@@ -36,13 +40,20 @@ public class FunctionImplementationRepository extends EntityRepository implement
 		ownTags.put("informationUsed","usesInformationRepresentation");
 		
 		inversedOwnTags = ownTags.inverse();
+		
+		LOGGER = Logger.getLogger(this.getClass()); 
 	}
 
 	@Override
-	public Collection<? extends iEntity> getSimpleEntities() throws Exception {
-		Collection<Object> intancesObj = arquiteturaRepository.getObjInstances("Application_Function_Implementation");
-		ArrayList<? extends iEntity> functionImplementations = getEntities(intancesObj);
-		return functionImplementations;
+	public Collection<? extends iEntity> getEntitiesById(Collection<String> ids) throws Exception {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public iEntity getEntityById(String id) throws Exception {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
 	}
 	
 	@Override
@@ -67,22 +78,9 @@ public class FunctionImplementationRepository extends EntityRepository implement
         }
         return functionImplementations;
 	}
-
+	
 	@Override
-	public Collection<? extends iEntity> getEntitiesById(Collection<String> ids) throws Exception {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public iEntity getEntityById(String id) throws Exception {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public iEntity getEntity(Collection<Object> entityObjects, int idx)
-			throws IllegalAccessException, InvocationTargetException {
+	public ArrayList<? extends iEntity> getDistinctEntities(Collection<Object> entityObjects) throws IllegalAccessException, InvocationTargetException {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
 	}
@@ -90,14 +88,14 @@ public class FunctionImplementationRepository extends EntityRepository implement
 	/**
 	 * @return the functionRepository
 	 */
-	public FunctionRepository getFunctionRepository() {
+	public iEntityRepository getFunctionRepository() {
 		return functionRepository;
 	}
 
 	/**
 	 * @param functionRepository the functionRepository to set
 	 */
-	public void setFunctionRepository(FunctionRepository functionRepository) {
+	public void setFunctionRepository(iEntityRepository functionRepository) {
 		this.functionRepository = functionRepository;
 	}
 

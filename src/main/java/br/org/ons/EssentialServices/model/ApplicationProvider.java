@@ -24,6 +24,8 @@ public class ApplicationProvider extends Entity implements iEntity {
     private ArrayList<SoftwareComponent> SoftwareComponents;
     private ArrayList<FunctionImplementation> FunctionImpls;
     private ArrayList<Stakeholder> Stakeholders;
+    private ArrayList<ApplicationService> ApplicationServices;
+    private ArrayList<UseOfInformationRepresentation> usesInformations;
 
 
     public ApplicationProvider() {
@@ -316,5 +318,37 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 */
 	public void setStakeholders(ArrayList<Stakeholder> stakeholders) {
 		Stakeholders = stakeholders;
+	}
+
+
+	/**
+	 * @return the applicationServices
+	 */
+	public ArrayList<ApplicationService> getApplicationServices() {
+		return ApplicationServices;
+	}
+
+
+	/**
+	 * @param applicationServices the applicationServices to set
+	 */
+	public void setApplicationServices(ArrayList<ApplicationService> applicationServices) {
+		ApplicationServices = applicationServices;
+	}
+
+
+	/**
+	 * @return the usesInformations
+	 */
+	public ArrayList<UseOfInformationRepresentation> getUsesInformations() {
+		return usesInformations;
+	}
+
+
+	/**
+	 * @param usesInformations the usesInformations to set
+	 */
+	public void setUsesInformations(ArrayList<UseOfInformationRepresentation> usesInformations) {
+		this.usesInformations = usesInformations;
 	} 
 }

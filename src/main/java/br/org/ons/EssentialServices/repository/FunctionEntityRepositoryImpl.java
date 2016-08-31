@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
+
 import br.org.ons.EssentialServices.model.ApplicationCapability;
 import br.org.ons.EssentialServices.model.Function;
 import br.org.ons.EssentialServices.model.FunctionImplementation;
@@ -18,29 +20,22 @@ import br.org.ons.EssentialServices.model.iEntity;
  * @author coichedid
  *
  */
-public class FunctionRepository extends EntityRepository implements iRepository {
+public class FunctionEntityRepositoryImpl extends EntityRepositoryImpl implements iEntityRepository {
 	
-	private ApplicationCapabilityRepository applicationCapabilityRepository;
+	private iEntityRepository applicationCapabilityRepository;
 
 	/**
 	 * 
 	 */
-	public FunctionRepository() {
+	public FunctionEntityRepositoryImpl() {
+		super();
 		ownTags.put("nome","name");
 		ownTags.put("descricao","description");
 		ownTags.put("behavior","applicationFunctionBehaviour");
 		
 		inversedOwnTags = ownTags.inverse();
-	}
-
-	/* (non-Javadoc)
-	 * @see br.org.ons.EssentialServices.repository.iRepository#getSimpleEntities()
-	 */
-	@Override
-	public Collection<? extends iEntity> getSimpleEntities() throws Exception {
-		Collection<Object> intancesObj = arquiteturaRepository.getObjInstances("Application_Function");
-		ArrayList<? extends iEntity> functions = getEntities(intancesObj);
-		return functions;
+		
+		LOGGER = Logger.getLogger(this.getClass()); 
 	}
 
 	/* (non-Javadoc)
@@ -86,27 +81,24 @@ public class FunctionRepository extends EntityRepository implements iRepository 
         }
         return functions;
 	}
-
-	/* (non-Javadoc)
-	 * @see br.org.ons.EssentialServices.repository.iRepository#getEntity(java.util.Collection, int)
-	 */
+	
 	@Override
-	public iEntity getEntity(Collection<Object> entityObjects, int idx) throws IllegalAccessException, InvocationTargetException {
-		ArrayList<? extends iEntity> entities = getEntities(entityObjects);
-		return entities.size() >= idx+1?entities.get(idx):null;
+	public ArrayList<? extends iEntity> getDistinctEntities(Collection<Object> entityObjects) throws IllegalAccessException, InvocationTargetException {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * @return the applicationCapabilityRepository
 	 */
-	public ApplicationCapabilityRepository getApplicationCapabilityRepository() {
+	public iEntityRepository getApplicationCapabilityRepository() {
 		return applicationCapabilityRepository;
 	}
 
 	/**
 	 * @param applicationCapabilityRepository the applicationCapabilityRepository to set
 	 */
-	public void setApplicationCapabilityRepository(ApplicationCapabilityRepository applicationCapabilityRepository) {
+	public void setApplicationCapabilityRepository(iEntityRepository applicationCapabilityRepository) {
 		this.applicationCapabilityRepository = applicationCapabilityRepository;
 	}
 

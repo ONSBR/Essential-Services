@@ -65,6 +65,10 @@ public class ArquiteturaCorporativaONSRepositoryImpl implements  ArquiteturaCorp
     	checkConnectivity();
     }
     
+    public void destroy() throws Exception{
+    	project.dispose();
+    }
+    
     @Override
     public Collection<Object> getObjInstances(String className) {
       Cls cls = kb.getCls(className); 
@@ -132,6 +136,36 @@ public class ArquiteturaCorporativaONSRepositoryImpl implements  ArquiteturaCorp
             Instance instance = (Instance) instancesI.next();
             HashMap<String,Object> inst = getInstanceHashMap(instance,slots);
             instances.add(inst);
+        }
+        
+        return instances;
+	}
+    
+    @Override
+	public HashMap<String,HashMap<String, Object>> getDistinctObjInstanceMaps(Collection<Object> instancesObjects, ArrayList<String> slotList) {
+    	try {
+			checkConnectivity();
+		} catch (Exception e) {
+			return null;
+		}
+        Collection<Slot> slots = new ArrayList<Slot>();
+        Slot slotName = kb.getSlot("name");
+        HashMap<String,HashMap<String,Object>> instances = new HashMap<>();
+        Iterator<String> slotListI = slotList.iterator();
+        while (slotListI.hasNext()) {
+            String key = slotListI.next();
+            String keyConv = convertFormat(key, 1);
+            Slot sl = kb.getSlot(keyConv);
+            if (sl != null){
+            		slots.add(sl);
+            }
+        }
+        Iterator instancesI = instancesObjects.iterator();
+        while (instancesI.hasNext()) {
+            Instance instance = (Instance) instancesI.next();
+            String name = (String)instance.getOwnSlotValue(slotName);
+            HashMap<String,Object> inst = getInstanceHashMap(instance,slots);
+            instances.put(name,inst);
         }
         
         return instances;
@@ -417,6 +451,23 @@ public class ArquiteturaCorporativaONSRepositoryImpl implements  ArquiteturaCorp
 		String keyConv = convertFormat(slotName, 1);
         Slot slot = kb.getSlot(keyConv);
 		Collection<Object> objInstances = instance.getOwnSlotValues(slot);
+		return objInstances;
+	}
+	
+	@Override
+	public Collection<Object> getObjInstancesOfSlot(String slotName, Collection<Object> instances) {
+		Iterator it = instances.iterator();
+		Collection<Object> objInstances = new ArrayList<>();
+		Slot slot = kb.getSlot(convertFormat(slotName, 1));
+		
+		while (it.hasNext()){
+			Instance instance = (Instance) it.next();
+			Iterator<Object> objOwnInstancesIt = instance.getOwnSlotValues(slot).iterator();
+			while(objOwnInstancesIt.hasNext()){
+				Object ownInstance = objOwnInstancesIt.next();
+				objInstances.add(ownInstance);
+			}
+		}
 		return objInstances;
 	}
 

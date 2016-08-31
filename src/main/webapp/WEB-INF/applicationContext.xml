@@ -6,34 +6,62 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
-	<bean id="EntityRepository" class="br.org.ons.EssentialServices.repository.EntityRepository">
-		<property name="arquiteturaRepository" ref="ArquiteturaCorporativaONSRepository"></property>
+	<bean id="EntityRepositoryImpl" class="br.org.ons.EssentialServices.repository.EntityRepositoryImpl" abstract="true">
+		<property name="arquiteturaRepository" ref="ArquiteturaCorporativaONSRepositoryImpl"></property>
 		<property name="repositoryName" value="EssentialServicesAPIRepository"></property>
 		<property name="essentialProjectPath" value="${essential.project.path}"></property>
 	</bean>
 	
-	<bean id="ApplicationProviderRepository" class="br.org.ons.EssentialServices.repository.ApplicationProviderRepository" parent="EntityRepository">
-		<property name="stakeholderRepository" ref="StakeholderRepository"></property>
-		<property name="functionImplementationRepository" ref="FunctionImplementationRepository"></property>
+	<bean id="ApplicationProviderEntityRepositoryImpl" class="br.org.ons.EssentialServices.repository.ApplicationProviderEntityRepositoryImpl" parent="EntityRepositoryImpl">
+		<property name="entityClass" value="Application_Provider"></property>
+		<property name="stakeholderRepository" ref="StakeholderEntityRepositoryImpl"></property>
+		<property name="functionImplementationRepository" ref="FunctionImplementationEntityRepositoryImpl"></property>
+		<property name="softwareComponentRepository" ref="SoftwareComponentEntityRepositoryImpl"></property>
+		<property name="applicationServiceRepository" ref="ApplicationServiceEntityRepositoryImpl"></property>
+		<property name="useOfInformationRepresentationRepository" ref="UseOfInformationRepresentationEntityRepositoryImpl"></property>
 	</bean>
 	
-	<bean id="StakeholderRepository" class="br.org.ons.EssentialServices.repository.StakeholderRepository" parent="EntityRepository">
-		<property name="actorRepository" ref="ActorRepository"></property>
+	<bean id="StakeholderEntityRepositoryImpl" class="br.org.ons.EssentialServices.repository.StakeholderEntityRepositoryImpl" parent="EntityRepositoryImpl">
+		<property name="entityClass" value="ACTOR_TO_ROLE_RELATION"></property>
+		<property name="actorRepository" ref="ActorEntityRepositoryImpl"></property>
 	</bean>
 	
-	<bean id="ActorRepository" class="br.org.ons.EssentialServices.repository.ActorRepository" parent="EntityRepository"/>
-	
-	<bean id="FunctionImplementationRepository" class="br.org.ons.EssentialServices.repository.FunctionImplementationRepository" parent="EntityRepository">
-		<property name="functionRepository" ref="FunctionRepository"></property>
+	<bean id="UseOfInformationRepresentationEntityRepositoryImpl" class="br.org.ons.EssentialServices.repository.UseOfInformationRepresentationEntityRepositoryImpl" parent="EntityRepositoryImpl">
+		<property name="entityClass" value="APP_PRO_TO_INFOREP_RELATION"></property>
+		<property name="operationOnDataRepresentationEntityRepository" ref="OperationOnDataRepresentationEntityRepositoryImpl"></property>
 	</bean>
 	
-	<bean id="FunctionRepository" class="br.org.ons.EssentialServices.repository.FunctionRepository" parent="EntityRepository">
-		<property name="applicationCapabilityRepository" ref="ApplicationCapabilityRepository"></property>
+	<bean id="OperationOnDataRepresentationEntityRepositoryImpl" class="br.org.ons.EssentialServices.repository.OperationOnDataRepresentationEntityRepositoryImpl" parent="EntityRepositoryImpl">
+		<property name="entityClass" value="APP_PRO_TO_INFOREP_TO_DATAREP_RELATION"></property>
 	</bean>
 	
-	<bean id="ApplicationCapabilityRepository" class="br.org.ons.EssentialServices.repository.ApplicationCapabilityRepository" parent="EntityRepository"/>
+	<bean id="ActorEntityRepositoryImpl" class="br.org.ons.EssentialServices.repository.ActorEntityRepositoryImpl" parent="EntityRepositoryImpl">
+		<property name="entityClass" value="Actor"></property>
+	</bean>
 	
-	<bean id="ArquiteturaCorporativaONSRepository" class="br.org.ons.EssentialServices.repository.server.ArquiteturaCorporativaONSRepositoryImpl" init-method="init">
+	<bean id="ApplicationServiceEntityRepositoryImpl" class="br.org.ons.EssentialServices.repository.ApplicationServiceEntityRepositoryImpl" parent="EntityRepositoryImpl">
+		<property name="entityClass" value="Application_Service"></property>
+	</bean>
+	
+	<bean id="SoftwareComponentEntityRepositoryImpl" class="br.org.ons.EssentialServices.repository.SoftwareComponentEntityRepositoryImpl" parent="EntityRepositoryImpl">
+		<property name="entityClass" value="Software_Component"></property>
+	</bean>
+	
+	<bean id="FunctionImplementationEntityRepositoryImpl" class="br.org.ons.EssentialServices.repository.FunctionImplementationEntityRepositoryImpl" parent="EntityRepositoryImpl">
+		<property name="entityClass" value="Application_Function_Implementation"></property>
+		<property name="functionRepository" ref="FunctionEntityRepositoryImpl"></property>
+	</bean>
+	
+	<bean id="FunctionEntityRepositoryImpl" class="br.org.ons.EssentialServices.repository.FunctionEntityRepositoryImpl" parent="EntityRepositoryImpl">
+		<property name="entityClass" value="Application_Function"></property>
+		<property name="applicationCapabilityRepository" ref="ApplicationCapabilityEntityRepositoryImpl"></property>
+	</bean>
+	
+	<bean id="ApplicationCapabilityEntityRepositoryImpl" class="br.org.ons.EssentialServices.repository.ApplicationCapabilityEntityRepositoryImpl" parent="EntityRepositoryImpl">
+		<property name="entityClass" value="Application_Capability"></property>
+	</bean>
+	
+	<bean id="ArquiteturaCorporativaONSRepositoryImpl" class="br.org.ons.EssentialServices.repository.server.ArquiteturaCorporativaONSRepositoryImpl" init-method="init" destroy-method="destroy">
 		<property name="projectPath" value="${essential.project.path}"></property>
 	</bean>
 

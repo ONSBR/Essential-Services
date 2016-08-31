@@ -6,43 +6,46 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
+
 import br.org.ons.EssentialServices.model.Actor;
 import br.org.ons.EssentialServices.model.Stakeholder;
 import br.org.ons.EssentialServices.model.iEntity;
 
-public class StakeholderRepository extends EntityRepository implements iRepository {
+public class StakeholderEntityRepositoryImpl extends EntityRepositoryImpl implements iEntityRepository {
 	
-	private ActorRepository actorRepository;
+	private iEntityRepository actorRepository;
 
-	public StakeholderRepository() {
+	public StakeholderEntityRepositoryImpl() {
+		super();
+		
 		ownTags.put("rolePlayed","actToRoleToRole");
 		ownTags.put("ator","actToRoleFromActor");
 		
 		inversedOwnTags = ownTags.inverse();
-	}
-	
-	@Override
-	public Collection<? extends iEntity> getSimpleEntities() throws Exception{
-		return null;
+
+		LOGGER = Logger.getLogger(this.getClass()); 
 	}
 	
 	@Override
 	public Collection<? extends iEntity> getEntitiesById(Collection<String> ids) throws Exception{
-		return null;
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
 	}
 	
 	@Override
 	public iEntity getEntityById(String id) throws Exception{
-		return null;
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public ArrayList<? extends iEntity> getEntities(Collection<Object> stakeholdersObjects) throws IllegalAccessException, InvocationTargetException {
+	public ArrayList<? extends iEntity> getEntities(Collection<Object> entityObjects) throws IllegalAccessException, InvocationTargetException {
 		ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
         
         ArrayList<String> slotList = getSimpleTags();
         
-        Collection<HashMap<String,Object>> instances = arquiteturaRepository.getObjInstanceMaps(stakeholdersObjects, slotList);
+        Collection<HashMap<String,Object>> instances = arquiteturaRepository.getObjInstanceMaps(entityObjects, slotList);
         Iterator<HashMap<String,Object>> instancesI = instances.iterator();
         while (instancesI.hasNext()) {
             HashMap<String,Object> map = instancesI.next();
@@ -58,9 +61,9 @@ public class StakeholderRepository extends EntityRepository implements iReposito
         }
         return stakeholders;
 	}
-
+	
 	@Override
-	public iEntity getEntity(Collection<Object> entityObjects, int idx) throws IllegalAccessException, InvocationTargetException {
+	public ArrayList<? extends iEntity> getDistinctEntities(Collection<Object> entityObjects) throws IllegalAccessException, InvocationTargetException {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
 	}
@@ -68,14 +71,14 @@ public class StakeholderRepository extends EntityRepository implements iReposito
 	/**
 	 * @return the actorRepository
 	 */
-	public ActorRepository getActorRepository() {
+	public iEntityRepository getActorRepository() {
 		return actorRepository;
 	}
 
 	/**
 	 * @param actorRepository the actorRepository to set
 	 */
-	public void setActorRepository(ActorRepository actorRepository) {
+	public void setActorRepository(iEntityRepository actorRepository) {
 		this.actorRepository = actorRepository;
 	}
 

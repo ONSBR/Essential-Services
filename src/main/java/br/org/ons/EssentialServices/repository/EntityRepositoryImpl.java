@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
+
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.mysql.jdbc.NotImplemented;
@@ -20,8 +22,8 @@ import br.org.ons.EssentialServices.repository.server.ArquiteturaCorporativaONSR
  * @author coichedid
  *
  */
-public class EntityRepository implements iEntityRepository {
-	
+public abstract class EntityRepositoryImpl implements iEntityRepository {
+	protected Logger LOGGER;
 	
 	protected ArquiteturaCorporativaONSRepository arquiteturaRepository;
 	
@@ -30,13 +32,29 @@ public class EntityRepository implements iEntityRepository {
     protected String repositoryName;
     protected String essentialProjectPath;
     
+    protected String entityClass;
+    
 	/**
 	 * 
 	 */
-	public EntityRepository() {
+	public EntityRepositoryImpl() {
 		ownTags = HashBiMap.create();
 	}
 	
+	/**
+	 * @return the entityClass
+	 */
+	public String getEntityClass() {
+		return entityClass;
+	}
+
+	/**
+	 * @param entityClass the entityClass to set
+	 */
+	public void setEntityClass(String entityClass) {
+		this.entityClass = entityClass;
+	}
+
 	/**
 	 * @param arquiteturaRepository the arquiteturaRepository to set
 	 */
@@ -76,6 +94,26 @@ public class EntityRepository implements iEntityRepository {
 			}
 		}
 		return translatedMap;
+	}
+
+	
+	public Collection<? extends iEntity> getSimpleEntities() throws Exception {
+		Collection<Object> intancesObj = arquiteturaRepository.getObjInstances(entityClass);
+		ArrayList<? extends iEntity> entities = getEntities(intancesObj);
+		return entities;
+	}
+
+	public abstract Collection<? extends iEntity> getEntitiesById(Collection<String> ids) throws Exception;
+
+	public abstract iEntity getEntityById(String id) throws Exception;
+
+	public abstract ArrayList<? extends iEntity> getEntities(Collection<Object> entityObjects) throws IllegalAccessException, InvocationTargetException ;
+	
+	public abstract ArrayList<? extends iEntity> getDistinctEntities(Collection<Object> entityObjects) throws IllegalAccessException, InvocationTargetException ;
+
+	public iEntity getEntity(Collection<Object> entityObjects, int idx) throws IllegalAccessException, InvocationTargetException {
+		ArrayList<? extends iEntity> entities = getEntities(entityObjects);
+		return entities.size() >= idx+1?entities.get(idx):null;
 	}
 
 }

@@ -13,34 +13,16 @@ import java.util.Map;
  */
 public class SoftwareComponent extends Entity implements iEntity {
 	
-	private String name;
 	private String id;
-	private String softwareArchitectureLayer;
-	private String softwareInteractionTechProtocol;
+	private String nome;
+	private String archLayer;
+	private String protocolo;
 	
 	/**
 	 * 
 	 */
 	public SoftwareComponent() {
 		super();
-//		simpleTags.put("Nome","name");
-//		simpleTags.put("Id","id");
-//		simpleTags.put("ArchLayer","softwareArchitectureLayer");
-//		simpleTags.put("Protocolo"," softwareInteractionTechProtocol");
-	}
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	/**
@@ -58,31 +40,45 @@ public class SoftwareComponent extends Entity implements iEntity {
 	}
 
 	/**
-	 * @return the softwareArchitectureLayer
+	 * @return the nome
 	 */
-	public String getSoftwareArchitectureLayer() {
-		return softwareArchitectureLayer;
+	public String getNome() {
+		return nome;
 	}
 
 	/**
-	 * @param softwareArchitectureLayer the softwareArchitectureLayer to set
+	 * @param nome the nome to set
 	 */
-	public void setSoftwareArchitectureLayer(String softwareArchitectureLayer) {
-		this.softwareArchitectureLayer = softwareArchitectureLayer;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	/**
-	 * @return the softwareInteractionTechProtocol
+	 * @return the archLayer
 	 */
-	public String getSoftwareInteractionTechProtocol() {
-		return softwareInteractionTechProtocol;
+	public String getArchLayer() {
+		return archLayer;
 	}
 
 	/**
-	 * @param softwareInteractionTechProtocol the softwareInteractionTechProtocol to set
+	 * @param archLayer the archLayer to set
 	 */
-	public void setSoftwareInteractionTechProtocol(String softwareInteractionTechProtocol) {
-		this.softwareInteractionTechProtocol = softwareInteractionTechProtocol;
+	public void setArchLayer(String archLayer) {
+		this.archLayer = archLayer;
+	}
+
+	/**
+	 * @return the protocolo
+	 */
+	public String getProtocolo() {
+		return protocolo;
+	}
+
+	/**
+	 * @param protocolo the protocolo to set
+	 */
+	public void setProtocolo(String protocolo) {
+		this.protocolo = protocolo;
 	}
 
 }
