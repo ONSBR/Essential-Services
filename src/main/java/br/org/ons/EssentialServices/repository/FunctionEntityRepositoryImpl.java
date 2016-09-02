@@ -102,4 +102,9 @@ public class FunctionEntityRepositoryImpl extends EntityRepositoryImpl implement
 		this.applicationCapabilityRepository = applicationCapabilityRepository;
 	}
 
+	@Override
+	public iEntity saveEntity(iEntity entity) throws Exception {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
 }

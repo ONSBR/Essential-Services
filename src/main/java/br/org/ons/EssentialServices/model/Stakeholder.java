@@ -26,7 +26,7 @@ public class Stakeholder extends Entity implements iEntity {
 	/**
 	 * @param ator the ator to set
 	 */
-	public void setActor(Actor ator) {
+	public void setAtor(Actor ator) {
 		this.ator = ator;
 	}
 	/**

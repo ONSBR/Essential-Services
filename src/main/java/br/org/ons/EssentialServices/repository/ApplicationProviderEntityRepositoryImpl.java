@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -42,8 +43,8 @@ public class ApplicationProviderEntityRepositoryImpl extends EntityRepositoryImp
 		ownTags.put("techCapsNeed","requiredTechnologyCapabilities");
 		ownTags.put("classifications","elementClassifiedBy");
 		ownTags.put("owner","apBusinessOwner");
-		ownTags.put("ITOwner","apITOwner");
-		ownTags.put("ITContact","apITContact");
+		ownTags.put("itOwner","apITOwner");
+		ownTags.put("itContact","apITContact");
 		
 		inversedOwnTags = ownTags.inverse();
 		
@@ -67,7 +68,7 @@ public class ApplicationProviderEntityRepositoryImpl extends EntityRepositoryImp
 		ArrayList<ApplicationProvider> applicationProviders = new ArrayList<ApplicationProvider>();
         
         ArrayList<String> slotList = getSimpleTags();
-        slotList.add("stakeholders");
+//        slotList.add("stakeholders");
         
         Collection<HashMap<String,Object>> instances = arquiteturaRepository.getObjInstanceMaps(entityObjects, slotList);
         Iterator<HashMap<String,Object>> instancesI = instances.iterator();
@@ -181,5 +182,21 @@ public class ApplicationProviderEntityRepositoryImpl extends EntityRepositoryImp
 	 */
 	public void setUseOfInformationRepresentationRepository(iEntityRepository useOfInformationRepresentationRepository) {
 		this.useOfInformationRepresentationRepository = useOfInformationRepresentationRepository;
+	}
+
+	@Override
+	public iEntity saveEntity(iEntity entity) throws Exception {
+		LOGGER.debug("Save Entity");
+		ApplicationProvider applicationProvider = (ApplicationProvider) entity;
+		
+		Map<String,Object> map = applicationProvider.toHashMap();
+		LOGGER.debug("Application map size " + map.size());
+		Map<String,Object> ownAttributes = getEntityOwnAttributes(map);
+		LOGGER.debug("Application ownAttributes size " + ownAttributes.size());
+		//Removing Id from attributes: this is not valid at Essential Metamodel
+		ownAttributes.remove("id");
+
+		Map<String,Object> savedEntityMap = arquiteturaRepository.saveObjInstance(entityClass, applicationProvider.getId(), applicationProvider.getNome(), ownAttributes);
+		return entity;
 	}
 }

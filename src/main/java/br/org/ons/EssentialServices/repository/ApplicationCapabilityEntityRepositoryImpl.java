@@ -83,4 +83,10 @@ public class ApplicationCapabilityEntityRepositoryImpl extends EntityRepositoryI
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
 	}
+	
+	@Override
+	public iEntity saveEntity(iEntity entity) throws Exception {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
 }

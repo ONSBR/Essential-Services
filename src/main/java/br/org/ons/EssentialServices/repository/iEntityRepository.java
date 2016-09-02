@@ -23,4 +23,5 @@ public interface iEntityRepository {
 	ArrayList<? extends iEntity> getEntities(Collection<Object> entityObjects) throws IllegalAccessException, InvocationTargetException;
 	ArrayList<? extends iEntity> getDistinctEntities(Collection<Object> entityObjects) throws IllegalAccessException, InvocationTargetException;
 	iEntity getEntity(Collection<Object> entityObjects, int idx) throws IllegalAccessException, InvocationTargetException;
+	iEntity saveEntity(iEntity entity) throws Exception;
 }

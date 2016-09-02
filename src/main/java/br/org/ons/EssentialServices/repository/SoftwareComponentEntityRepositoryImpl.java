@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -82,9 +83,9 @@ public class SoftwareComponentEntityRepositoryImpl extends EntityRepositoryImpl 
 	public ArrayList<? extends iEntity> getDistinctEntities(Collection<Object> entityObjects) throws IllegalAccessException, InvocationTargetException {
 		ArrayList<SoftwareComponent> softwareComponents = new ArrayList<>();
         
-        ArrayList<String> slotList = getSimpleTags();
+        List<String> slotList = getSimpleTags();
         
-        HashMap<String,HashMap<String,Object>> instances = arquiteturaRepository.getDistinctObjInstanceMaps(entityObjects, slotList);
+        Map<String,HashMap<String,Object>> instances = arquiteturaRepository.getDistinctObjInstanceMaps(entityObjects, slotList);
         Iterator<Map.Entry<String,HashMap<String,Object>>> instancesI = instances.entrySet().iterator();
         while (instancesI.hasNext()) {
             HashMap<String,Object> map = instancesI.next().getValue();
@@ -96,6 +97,12 @@ public class SoftwareComponentEntityRepositoryImpl extends EntityRepositoryImpl 
             softwareComponents.add(softwareComponent);
         }
         return softwareComponents;
+	}
+	
+	@Override
+	public iEntity saveEntity(iEntity entity) throws Exception {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
 	}
 
 }

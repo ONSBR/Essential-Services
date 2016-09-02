@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import com.mysql.jdbc.NotImplemented;
 
 import br.org.ons.EssentialServices.model.iEntity;
 import br.org.ons.EssentialServices.repository.server.ArquiteturaCorporativaONSRepository;
@@ -110,10 +110,27 @@ public abstract class EntityRepositoryImpl implements iEntityRepository {
 	public abstract ArrayList<? extends iEntity> getEntities(Collection<Object> entityObjects) throws IllegalAccessException, InvocationTargetException ;
 	
 	public abstract ArrayList<? extends iEntity> getDistinctEntities(Collection<Object> entityObjects) throws IllegalAccessException, InvocationTargetException ;
+	
+	public abstract iEntity saveEntity(iEntity entity) throws Exception;
 
 	public iEntity getEntity(Collection<Object> entityObjects, int idx) throws IllegalAccessException, InvocationTargetException {
 		ArrayList<? extends iEntity> entities = getEntities(entityObjects);
 		return entities.size() >= idx+1?entities.get(idx):null;
+	}
+	
+	protected Map<String,Object> getEntityOwnAttributes(Map<String,Object> map){
+		Map<String, Object> ownAttributes = new HashMap<>();
+		LOGGER.debug("Simple tags");
+		LOGGER.debug(getSimpleTags());
+		Iterator<String> tagIterator = ownTags.keySet().iterator();
+		while(tagIterator.hasNext()) {
+			String tag = tagIterator.next();
+			if (map.containsKey(tag)) {
+				String ownTag = ownTags.get(tag);
+				ownAttributes.put(ownTag, map.get(tag));
+			}
+		}
+		return ownAttributes;
 	}
 
 }

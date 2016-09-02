@@ -98,5 +98,11 @@ public class FunctionImplementationEntityRepositoryImpl extends EntityRepository
 	public void setFunctionRepository(iEntityRepository functionRepository) {
 		this.functionRepository = functionRepository;
 	}
+	
+	@Override
+	public iEntity saveEntity(iEntity entity) throws Exception {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
 
 }

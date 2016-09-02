@@ -75,4 +75,10 @@ public class ActorEntityRepositoryImpl extends EntityRepositoryImpl implements i
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
 	}
+
+	@Override
+	public iEntity saveEntity(iEntity entity) throws Exception {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
 }

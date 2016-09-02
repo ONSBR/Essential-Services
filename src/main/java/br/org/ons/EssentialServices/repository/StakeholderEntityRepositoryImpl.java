@@ -20,7 +20,7 @@ public class StakeholderEntityRepositoryImpl extends EntityRepositoryImpl implem
 		super();
 		
 		ownTags.put("rolePlayed","actToRoleToRole");
-		ownTags.put("ator","actToRoleFromActor");
+//		ownTags.put("ator","actToRoleFromActor");
 		
 		inversedOwnTags = ownTags.inverse();
 
@@ -49,15 +49,17 @@ public class StakeholderEntityRepositoryImpl extends EntityRepositoryImpl implem
         Iterator<HashMap<String,Object>> instancesI = instances.iterator();
         while (instancesI.hasNext()) {
             HashMap<String,Object> map = instancesI.next();
-            HashMap<String,Object> translatedMap = translateProperties(map);
-            Stakeholder stakeholder = new Stakeholder();
-            stakeholder.updateProperties(translatedMap);
-            
-            //Process Actors
-            Collection<Object> actors = arquiteturaRepository.getObjInstancesOfSlot("actToRoleFromActor",map);
-            stakeholder.setActor((Actor)actorRepository.getEntity(actors,0));
-            
-            stakeholders.add(stakeholder);
+            if (map.containsKey(ownTags.get("rolePlayed")) && map.get(ownTags.get("rolePlayed")) != null) {
+            	HashMap<String,Object> translatedMap = translateProperties(map);
+                Stakeholder stakeholder = new Stakeholder();
+                stakeholder.updateProperties(translatedMap);
+                
+                //Process Actors
+                Collection<Object> actors = arquiteturaRepository.getObjInstancesOfSlot("actToRoleFromActor",map);
+                stakeholder.setAtor((Actor)actorRepository.getEntity(actors,0));
+                
+                stakeholders.add(stakeholder);
+            }
         }
         return stakeholders;
 	}
@@ -80,6 +82,12 @@ public class StakeholderEntityRepositoryImpl extends EntityRepositoryImpl implem
 	 */
 	public void setActorRepository(iEntityRepository actorRepository) {
 		this.actorRepository = actorRepository;
+	}
+	
+	@Override
+	public iEntity saveEntity(iEntity entity) throws Exception {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
 	}
 
 }

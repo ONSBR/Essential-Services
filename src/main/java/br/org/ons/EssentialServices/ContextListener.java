@@ -23,7 +23,10 @@ public class ContextListener implements ServletContextListener {
         String fullPath = context.getRealPath("") + File.separator + log4jConfigFile;
          
         PropertyConfigurator.configure(fullPath);
-         
+        
+        //Initialize Protege properties
+        String protegeDir = context.getRealPath("") + "WEB-INF/";
+        System.setProperty("protege.dir", protegeDir);
     }
      
     @Override

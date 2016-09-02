@@ -110,5 +110,11 @@ public class UseOfInformationRepresentationEntityRepositoryImpl extends EntityRe
 	public void setOperationOnDataRepresentationEntityRepository(iEntityRepository operationOnDataRepresentationEntityRepository) {
 		this.operationOnDataRepresentationEntityRepository = operationOnDataRepresentationEntityRepository;
 	}
+	
+	@Override
+	public iEntity saveEntity(iEntity entity) throws Exception {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
 
 }

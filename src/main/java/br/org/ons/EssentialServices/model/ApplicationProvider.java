@@ -7,24 +7,24 @@ import java.util.Collection;
 public class ApplicationProvider extends Entity implements iEntity {
 
     private String id;
-    private String Nome;
-    private String Descricao;
-    private String Hospedagem;
-    private String Status;
-    private String TipoDeAplicacao;
-    private String TipoDeProduto;
-    private String Fornecedor;
-    private Collection<String> UsageLocations;
-    private Collection<String> Propositos;
-    private Collection<String> TechCapsNeed;
-    private Collection <String>Classifications;
-    private String Owner;
-    private String ITOwner;
-    private String ITContact;
-    private ArrayList<SoftwareComponent> SoftwareComponents;
-    private ArrayList<FunctionImplementation> FunctionImpls;
-    private ArrayList<Stakeholder> Stakeholders;
-    private ArrayList<ApplicationService> ApplicationServices;
+    private String nome;
+    private String descricao;
+    private String hospedagem;
+    private String status;
+    private String tipoDeAplicacao;
+    private String tipoDeProduto;
+    private String fornecedor;
+    private Collection<String> usageLocations;
+    private Collection<String> propositos;
+    private Collection<String> techCapsNeed;
+    private Collection <String>classifications;
+    private String owner;
+    private String itOwner;
+    private String itContact;
+    private ArrayList<SoftwareComponent> softwareComponents;
+    private ArrayList<FunctionImplementation> functionImpls;
+    private ArrayList<Stakeholder> stakeholders;
+    private ArrayList<ApplicationService> applicationServices;
     private ArrayList<UseOfInformationRepresentation> usesInformations;
 
 
@@ -53,7 +53,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the nome
 	 */
 	public String getNome() {
-		return Nome;
+		return nome;
 	}
 
 
@@ -61,7 +61,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param nome the nome to set
 	 */
 	public void setNome(String nome) {
-		Nome = nome;
+		this.nome = nome;
 	}
 
 
@@ -69,7 +69,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the descricao
 	 */
 	public String getDescricao() {
-		return Descricao;
+		return descricao;
 	}
 
 
@@ -77,7 +77,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param descricao the descricao to set
 	 */
 	public void setDescricao(String descricao) {
-		Descricao = descricao;
+		this.descricao = descricao;
 	}
 
 
@@ -85,7 +85,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the hospedagem
 	 */
 	public String getHospedagem() {
-		return Hospedagem;
+		return hospedagem;
 	}
 
 
@@ -93,7 +93,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param hospedagem the hospedagem to set
 	 */
 	public void setHospedagem(String hospedagem) {
-		Hospedagem = hospedagem;
+		this.hospedagem = hospedagem;
 	}
 
 
@@ -101,7 +101,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the status
 	 */
 	public String getStatus() {
-		return Status;
+		return status;
 	}
 
 
@@ -109,7 +109,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param status the status to set
 	 */
 	public void setStatus(String status) {
-		Status = status;
+		this.status = status;
 	}
 
 
@@ -117,7 +117,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the tipoDeAplicacao
 	 */
 	public String getTipoDeAplicacao() {
-		return TipoDeAplicacao;
+		return tipoDeAplicacao;
 	}
 
 
@@ -125,7 +125,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param tipoDeAplicacao the tipoDeAplicacao to set
 	 */
 	public void setTipoDeAplicacao(String tipoDeAplicacao) {
-		TipoDeAplicacao = tipoDeAplicacao;
+		this.tipoDeAplicacao = tipoDeAplicacao;
 	}
 
 
@@ -133,7 +133,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the tipoDeProduto
 	 */
 	public String getTipoDeProduto() {
-		return TipoDeProduto;
+		return tipoDeProduto;
 	}
 
 
@@ -141,7 +141,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param tipoDeProduto the tipoDeProduto to set
 	 */
 	public void setTipoDeProduto(String tipoDeProduto) {
-		TipoDeProduto = tipoDeProduto;
+		this.tipoDeProduto = tipoDeProduto;
 	}
 
 
@@ -149,7 +149,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the fornecedor
 	 */
 	public String getFornecedor() {
-		return Fornecedor;
+		return fornecedor;
 	}
 
 
@@ -157,7 +157,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param fornecedor the fornecedor to set
 	 */
 	public void setFornecedor(String fornecedor) {
-		Fornecedor = fornecedor;
+		this.fornecedor = fornecedor;
 	}
 
 
@@ -165,7 +165,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the usageLocations
 	 */
 	public Collection<String> getUsageLocations() {
-		return UsageLocations;
+		return usageLocations;
 	}
 
 
@@ -173,7 +173,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param usageLocations the usageLocations to set
 	 */
 	public void setUsageLocations(Collection<String> usageLocations) {
-		UsageLocations = usageLocations;
+		this.usageLocations = usageLocations;
 	}
 
 
@@ -181,7 +181,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the propositos
 	 */
 	public Collection<String> getPropositos() {
-		return Propositos;
+		return propositos;
 	}
 
 
@@ -189,7 +189,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param propositos the propositos to set
 	 */
 	public void setPropositos(Collection<String> propositos) {
-		Propositos = propositos;
+		this.propositos = propositos;
 	}
 
 
@@ -197,7 +197,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the techCapsNeed
 	 */
 	public Collection<String> getTechCapsNeed() {
-		return TechCapsNeed;
+		return techCapsNeed;
 	}
 
 
@@ -205,7 +205,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param techCapsNeed the techCapsNeed to set
 	 */
 	public void setTechCapsNeed(Collection<String> techCapsNeed) {
-		TechCapsNeed = techCapsNeed;
+		this.techCapsNeed = techCapsNeed;
 	}
 
 
@@ -213,7 +213,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the classifications
 	 */
 	public Collection<String> getClassifications() {
-		return Classifications;
+		return classifications;
 	}
 
 
@@ -221,7 +221,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param classifications the classifications to set
 	 */
 	public void setClassifications(Collection<String> classifications) {
-		Classifications = classifications;
+		this.classifications = classifications;
 	}
 
 
@@ -229,7 +229,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the owner
 	 */
 	public String getOwner() {
-		return Owner;
+		return owner;
 	}
 
 
@@ -237,39 +237,39 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param owner the owner to set
 	 */
 	public void setOwner(String owner) {
-		Owner = owner;
+		this.owner = owner;
 	}
 
 
 	/**
-	 * @return the iTOwner
+	 * @return the itOwner
 	 */
-	public String getITOwner() {
-		return ITOwner;
+	public String getItOwner() {
+		return itOwner;
 	}
 
 
 	/**
-	 * @param iTOwner the iTOwner to set
+	 * @param itOwner the itOwner to set
 	 */
-	public void setITOwner(String iTOwner) {
-		ITOwner = iTOwner;
+	public void setItOwner(String itOwner) {
+		this.itOwner = itOwner;
 	}
 
 
 	/**
-	 * @return the iTContact
+	 * @return the itContact
 	 */
-	public String getITContact() {
-		return ITContact;
+	public String getItContact() {
+		return itContact;
 	}
 
 
 	/**
-	 * @param iTContact the iTContact to set
+	 * @param itContact the itContact to set
 	 */
-	public void setITContact(String iTContact) {
-		ITContact = iTContact;
+	public void setItContact(String itContact) {
+		this.itContact = itContact;
 	}
 
 
@@ -277,7 +277,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the softwareComponents
 	 */
 	public ArrayList<SoftwareComponent> getSoftwareComponents() {
-		return SoftwareComponents;
+		return softwareComponents;
 	}
 
 
@@ -285,7 +285,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param softwareComponents the softwareComponents to set
 	 */
 	public void setSoftwareComponents(ArrayList<SoftwareComponent> softwareComponents) {
-		SoftwareComponents = softwareComponents;
+		this.softwareComponents = softwareComponents;
 	}
 
 
@@ -293,7 +293,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the functionImpls
 	 */
 	public ArrayList<FunctionImplementation> getFunctionImpls() {
-		return FunctionImpls;
+		return functionImpls;
 	}
 
 
@@ -301,7 +301,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param functionImpls the functionImpls to set
 	 */
 	public void setFunctionImpls(ArrayList<FunctionImplementation> functionImpls) {
-		FunctionImpls = functionImpls;
+		this.functionImpls = functionImpls;
 	}
 
 
@@ -309,7 +309,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the stakeholders
 	 */
 	public ArrayList<Stakeholder> getStakeholders() {
-		return Stakeholders;
+		return stakeholders;
 	}
 
 
@@ -317,7 +317,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param stakeholders the stakeholders to set
 	 */
 	public void setStakeholders(ArrayList<Stakeholder> stakeholders) {
-		Stakeholders = stakeholders;
+		this.stakeholders = stakeholders;
 	}
 
 
@@ -325,7 +325,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @return the applicationServices
 	 */
 	public ArrayList<ApplicationService> getApplicationServices() {
-		return ApplicationServices;
+		return applicationServices;
 	}
 
 
@@ -333,7 +333,7 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 * @param applicationServices the applicationServices to set
 	 */
 	public void setApplicationServices(ArrayList<ApplicationService> applicationServices) {
-		ApplicationServices = applicationServices;
+		this.applicationServices = applicationServices;
 	}
 
 
@@ -350,5 +350,8 @@ public class ApplicationProvider extends Entity implements iEntity {
 	 */
 	public void setUsesInformations(ArrayList<UseOfInformationRepresentation> usesInformations) {
 		this.usesInformations = usesInformations;
-	} 
+	}
+
+
+	
 }
